@@ -1,3 +1,4 @@
+@import '../../tokens.css';
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
@@ -59,39 +60,39 @@
 @layer base {
   :root,
   .dark {
-    --background: oklch(0.15 0.009 42);
-    --foreground: oklch(0.94 0.013 78);
-    --card: oklch(0.2 0.012 44);
-    --card-foreground: oklch(0.94 0.013 78);
-    --popover: oklch(0.2 0.012 44);
-    --popover-foreground: oklch(0.94 0.013 78);
-    --primary: oklch(0.73 0.09 57);
-    --primary-foreground: oklch(0.15 0.009 42);
-    --secondary: oklch(0.25 0.013 43);
-    --secondary-foreground: oklch(0.94 0.013 78);
-    --muted: oklch(0.25 0.013 43);
-    --muted-foreground: oklch(0.71 0.021 67);
-    --accent: oklch(0.3 0.02 44);
-    --accent-foreground: oklch(0.96 0.012 78);
-    --destructive: oklch(0.62 0.19 25);
-    --destructive-foreground: oklch(0.98 0 0);
-    --border: oklch(0.34 0.019 44);
-    --input: oklch(0.34 0.019 44);
-    --ring: oklch(0.73 0.09 57);
-    --chart-1: oklch(0.73 0.09 57);
-    --chart-2: oklch(0.61 0.08 38);
-    --chart-3: oklch(0.78 0.03 79);
-    --chart-4: oklch(0.55 0.035 170);
-    --chart-5: oklch(0.63 0.055 26);
-    --radius: 0.25rem;
-    --sidebar: oklch(0.17 0.01 42);
-    --sidebar-foreground: oklch(0.94 0.013 78);
-    --sidebar-primary: oklch(0.73 0.09 57);
-    --sidebar-primary-foreground: oklch(0.15 0.009 42);
-    --sidebar-accent: oklch(0.27 0.016 44);
-    --sidebar-accent-foreground: oklch(0.94 0.013 78);
-    --sidebar-border: oklch(0.34 0.019 44);
-    --sidebar-ring: oklch(0.73 0.09 57);
+    --background: var(--color-dc-paper);
+    --foreground: var(--color-dc-ink);
+    --card: var(--color-dc-white);
+    --card-foreground: var(--color-dc-ink);
+    --popover: var(--color-dc-white);
+    --popover-foreground: var(--color-dc-ink);
+    --primary: var(--color-dc-accent);
+    --primary-foreground: var(--color-dc-white);
+    --secondary: var(--color-dc-peach);
+    --secondary-foreground: var(--color-dc-ink);
+    --muted: var(--color-dc-subtle);
+    --muted-foreground: var(--color-dc-muted);
+    --accent: var(--color-dc-peach);
+    --accent-foreground: var(--color-dc-ink);
+    --destructive: var(--color-dc-accent);
+    --destructive-foreground: var(--color-dc-white);
+    --border: var(--color-dc-line);
+    --input: var(--color-dc-line);
+    --ring: var(--color-dc-focus);
+    --chart-1: var(--color-dc-accent);
+    --chart-2: var(--color-dc-green);
+    --chart-3: var(--color-dc-peach-deep);
+    --chart-4: var(--color-dc-mint);
+    --chart-5: var(--color-dc-lilac);
+    --radius: 0.4rem;
+    --sidebar: var(--color-dc-white);
+    --sidebar-foreground: var(--color-dc-ink);
+    --sidebar-primary: var(--color-dc-accent);
+    --sidebar-primary-foreground: var(--color-dc-white);
+    --sidebar-accent: var(--color-dc-peach);
+    --sidebar-accent-foreground: var(--color-dc-ink);
+    --sidebar-border: var(--color-dc-line);
+    --sidebar-ring: var(--color-dc-focus);
   }
 }
 

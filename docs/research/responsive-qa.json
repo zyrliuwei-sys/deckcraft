@@ -1,0 +1,176 @@
+[
+  {
+    "path": "/",
+    "width": 320,
+    "scroll": 320,
+    "broken": [],
+    "overflows": [
+      {
+        "tag": "A",
+        "class": "",
+        "text": "FAQ"
+      }
+    ]
+  },
+  {
+    "path": "/",
+    "width": 375,
+    "scroll": 375,
+    "broken": [],
+    "overflows": []
+  },
+  {
+    "path": "/",
+    "width": 390,
+    "scroll": 390,
+    "broken": [],
+    "overflows": []
+  },
+  {
+    "path": "/",
+    "width": 414,
+    "scroll": 414,
+    "broken": [],
+    "overflows": []
+  },
+  {
+    "path": "/",
+    "width": 768,
+    "scroll": 768,
+    "broken": [],
+    "overflows": []
+  },
+  {
+    "path": "/",
+    "width": 1440,
+    "scroll": 1440,
+    "broken": [],
+    "overflows": []
+  },
+  {
+    "path": "/download",
+    "width": 320,
+    "scroll": 320,
+    "broken": [],
+    "overflows": []
+  },
+  {
+    "path": "/download",
+    "width": 375,
+    "scroll": 375,
+    "broken": [],
+    "overflows": []
+  },
+  {
+    "path": "/download",
+    "width": 390,
+    "scroll": 390,
+    "broken": [],
+    "overflows": []
+  },
+  {
+    "path": "/download",
+    "width": 414,
+    "scroll": 414,
+    "broken": [],
+    "overflows": []
+  },
+  {
+    "path": "/download",
+    "width": 768,
+    "scroll": 768,
+    "broken": [],
+    "overflows": []
+  },
+  {
+    "path": "/download",
+    "width": 1440,
+    "scroll": 1440,
+    "broken": [],
+    "overflows": []
+  },
+  {
+    "path": "/tutorials",
+    "width": 320,
+    "scroll": 320,
+    "broken": [],
+    "overflows": []
+  },
+  {
+    "path": "/tutorials",
+    "width": 375,
+    "scroll": 375,
+    "broken": [],
+    "overflows": []
+  },
+  {
+    "path": "/tutorials",
+    "width": 390,
+    "scroll": 390,
+    "broken": [],
+    "overflows": []
+  },
+  {
+    "path": "/tutorials",
+    "width": 414,
+    "scroll": 414,
+    "broken": [],
+    "overflows": []
+  },
+  {
+    "path": "/tutorials",
+    "width": 768,
+    "scroll": 768,
+    "broken": [],
+    "overflows": []
+  },
+  {
+    "path": "/tutorials",
+    "width": 1440,
+    "scroll": 1440,
+    "broken": [],
+    "overflows": []
+  },
+  {
+    "path": "/compare",
+    "width": 320,
+    "scroll": 320,
+    "broken": [],
+    "overflows": []
+  },
+  {
+    "path": "/compare",
+    "width": 375,
+    "scroll": 375,
+    "broken": [],
+    "overflows": []
+  },
+  {
+    "path": "/compare",
+    "width": 390,
+    "scroll": 390,
+    "broken": [],
+    "overflows": []
+  },
+  {
+    "path": "/compare",
+    "width": 414,
+    "scroll": 414,
+    "broken": [],
+    "overflows": []
+  },
+  {
+    "path": "/compare",
+    "width": 768,
+    "scroll": 768,
+    "broken": [],
+    "overflows": []
+  },
+  {
+    "path": "/compare",
+    "width": 1440,
+    "scroll": 1440,
+    "broken": [],
+    "overflows": []
+  }
+]

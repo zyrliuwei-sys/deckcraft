@@ -1,24 +1,30 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "hotel-lobby-ai",
+  "name": "deckcraft",
   "compatibility_flags": ["nodejs_compat"],
-  "observability": { "enabled": true },
+  "observability": {
+    "enabled": true
+  },
   "vars": {
     "DATABASE_PROVIDER": "d1",
-    "VITE_APP_URL": "https://hotel-lobby.org",
-    "VITE_APP_NAME": "Hotel Lobby AI",
-    "VITE_APP_DESCRIPTION": "Plan a two-person Hotel Lobby AI filter video and copy a prompt for an image-to-video studio.",
+    "VITE_APP_URL": "https://deckcraft.me",
+    "VITE_APP_NAME": "DeckCraft",
+    "VITE_APP_DESCRIPTION": "Free, open-source presentation software. Online editor, downloads, tutorials, and PowerPoint comparison.",
     "VITE_APP_LOGO": "/logo.svg",
     "VITE_DEFAULT_LOCALE": "en"
   },
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "hotel-lobby-db",
-      "database_id": "9c9d279e-2929-4b38-9d0f-0259fb6a96dd",
+      "database_name": "deckcraft",
+      "database_id": "666cd6cf-462a-45c7-a7fd-4877fc39d7bc",
       "migrations_dir": "drizzle"
     }
   ],
-  "triggers": { "crons": ["* * * * *"] },
-  "routes": [{ "pattern": "hotel-lobby.org", "custom_domain": true }]
+  "routes": [
+    {
+      "pattern": "deckcraft.me",
+      "custom_domain": true
+    }
+  ]
 }

@@ -1,6 +1,6 @@
 -- 2026-10-16: first-party funnel event table (src/config/db/schema.sqlite.ts → event).
 -- Additive only (new table + indexes). Generated with drizzle-kit export.
--- Apply: npx wrangler d1 execute hotel-lobby-db --remote --file scripts/sql/2026-10-16-event-table.sql
+-- Apply: npx wrangler d1 execute deckcraft --remote --file scripts/sql/2026-10-16-event-table.sql
 
 CREATE TABLE IF NOT EXISTS `event` (
 	`id` text PRIMARY KEY NOT NULL,

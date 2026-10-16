@@ -1,7 +1,7 @@
 import { lazy, Suspense, type ComponentType } from 'react';
 import { notFound, useLoaderData } from '@tanstack/react-router';
 
-import { envConfigs } from '@/config';
+import { deckcraftLinks } from '@/config/deckcraft';
 import { m } from '@/paraglide/messages.js';
 import {
   baseLocale,
@@ -62,7 +62,7 @@ export function staticPageRouteOptions(slug: string) {
     head: ({ loaderData }: { loaderData?: LoaderData }) => {
       if (!loaderData) return {};
       const { meta, locale } = loaderData;
-      const canonical = localizeUrl(`${envConfigs.app_url}/${slug}`, {
+      const canonical = localizeUrl(`${deckcraftLinks.site}/${slug}`, {
         locale: locale as ReturnType<typeof getLocale>,
       }).href;
       return {
@@ -75,7 +75,7 @@ export function staticPageRouteOptions(slug: string) {
           ...locales.map((loc) => ({
             rel: 'alternate',
             hrefLang: loc,
-            href: localizeUrl(`${envConfigs.app_url}/${slug}`, { locale: loc })
+            href: localizeUrl(`${deckcraftLinks.site}/${slug}`, { locale: loc })
               .href,
           })),
         ],

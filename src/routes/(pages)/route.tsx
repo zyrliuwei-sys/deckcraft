@@ -4,6 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 
 import { Link } from '@/core/i18n/navigation';
 import { m } from '@/paraglide/messages.js';
+import { DeckcraftFooter, DeckcraftHeader } from '@/blocks/deckcraft/chrome';
 import { mdxComponents } from '@/components/mdx-components';
 
 export const Route = createFileRoute('/(pages)')({
@@ -12,7 +13,8 @@ export const Route = createFileRoute('/(pages)')({
 
 function PagesLayout() {
   return (
-    <div className="bg-background min-h-screen">
+    <div className="dc-site">
+      <DeckcraftHeader />
       <div className="mx-auto max-w-3xl px-6 pt-8 md:px-8">
         <Link
           href="/"
@@ -27,6 +29,7 @@ function PagesLayout() {
           <Outlet />
         </MDXProvider>
       </div>
+      <DeckcraftFooter />
     </div>
   );
 }

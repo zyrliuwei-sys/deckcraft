@@ -1,28 +1,20 @@
 import { createFileRoute } from '@tanstack/react-router';
 
 import { envConfigs } from '@/config';
-import {
-  HERO_DESKTOP_SIZES,
-  HERO_DESKTOP_WIDTHS,
-  HERO_MOBILE_MEDIA,
-  HERO_MOBILE_WIDTHS,
-  optSrcSet,
-} from '@/config/hotel-lobby-images';
+import { deckcraftLinks } from '@/config/deckcraft';
 import { m } from '@/paraglide/messages.js';
 import { getLocale, locales, localizeUrl } from '@/paraglide/runtime.js';
-import { HotelLobbyPage } from '@/blocks/hotel-lobby';
+import { DeckcraftHome } from '@/blocks/deckcraft/home';
 
 export const Route = createFileRoute('/')({
   loader: () => ({ locale: getLocale() }),
   head: ({ loaderData }) => {
-    const locale = loaderData?.locale ?? 'en';
-    const title = m['common.metadata.title']({}, { locale: locale as any });
-    const description = m['common.metadata.description'](
-      {},
-      { locale: locale as any }
-    );
+    const locale = (loaderData?.locale ?? 'en') as 'en' | 'zh';
+    const title = m['common.metadata.title']({}, { locale });
+    const description = m['common.metadata.description']({}, { locale });
     const urlFor = (loc: string) =>
-      localizeUrl(`${envConfigs.app_url}/`, { locale: loc as any }).href;
+      localizeUrl(`${deckcraftLinks.site}/`, { locale: loc as 'en' | 'zh' })
+        .href;
     return {
       meta: [
         { title },
@@ -32,37 +24,11 @@ export const Route = createFileRoute('/')({
         { property: 'og:type', content: 'website' },
         {
           property: 'og:image',
-          content: `${envConfigs.app_url}/imgs/generated/hotel-lobby-duet.png`,
+          content: `${deckcraftLinks.site}/imgs/deckcraft/editor.png`,
         },
         { name: 'twitter:card', content: 'summary_large_image' },
       ],
       links: [
-        // LCP: the hero <picture> sits behind <source>s, which the browser
-        // only discovers after layout — preload the matching rendition.
-        {
-          rel: 'preload',
-          as: 'image',
-          type: 'image/avif',
-          media: HERO_MOBILE_MEDIA,
-          imageSrcSet: optSrcSet('hero-mobile', HERO_MOBILE_WIDTHS, 'avif'),
-          imageSizes: '100vw',
-          fetchPriority: 'high',
-        },
-        {
-          rel: 'preload',
-          as: 'image',
-          type: 'image/avif',
-          media: '(min-width: 601px)',
-          imageSrcSet: optSrcSet('hero-desktop', HERO_DESKTOP_WIDTHS, 'avif'),
-          imageSizes: HERO_DESKTOP_SIZES,
-          fetchPriority: 'high',
-        },
-        {
-          rel: 'preload',
-          as: 'image',
-          type: 'image/webp',
-          href: '/imgs/generated/opt/studio-backdrop-960.webp',
-        },
         { rel: 'canonical', href: urlFor(locale) },
         ...locales.map((loc) => ({
           rel: 'alternate',
@@ -76,16 +42,15 @@ export const Route = createFileRoute('/')({
           type: 'application/ld+json',
           children: JSON.stringify({
             '@context': 'https://schema.org',
-            '@type': 'WebPage',
-            name: title,
+            '@type': 'WebSite',
+            name: envConfigs.app_name,
+            url: deckcraftLinks.site,
             description,
-            url: urlFor(locale),
-            inLanguage: locale,
-            primaryImageOfPage: `${envConfigs.app_url}/imgs/generated/hotel-lobby-duet.png`,
+            inLanguage: ['en', 'zh'],
           }),
         },
       ],
     };
   },
-  component: HotelLobbyPage,
+  component: DeckcraftHome,
 });

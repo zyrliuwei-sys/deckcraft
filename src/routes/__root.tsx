@@ -11,7 +11,6 @@ import {
 } from '@tanstack/react-router';
 import { createServerFn } from '@tanstack/react-start';
 import dmSansLatinUrl from '@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2?url';
-import bebasLatinUrl from '@fontsource/bebas-neue/files/bebas-neue-latin-400-normal.woff2?url';
 import { ThemeProvider } from 'next-themes';
 
 import { envConfigs } from '@/config';
@@ -68,15 +67,9 @@ export const Route = createRootRoute({
         { name: 'description', content: envConfigs.app_description },
       ],
       links: [
-        // Preload the latin display/body fonts (declared in styles/fonts.css
+        // Preload the shared body/display font (declared in styles/fonts.css
         // with font-display: optional) so they make the first paint.
-        {
-          rel: 'preload',
-          as: 'font',
-          type: 'font/woff2',
-          href: bebasLatinUrl,
-          crossOrigin: 'anonymous',
-        },
+
         {
           rel: 'preload',
           as: 'font',
@@ -108,7 +101,7 @@ function RootComponent() {
     <QueryClientProvider client={getQueryClient()}>
       <ThemeProvider
         attribute="class"
-        defaultTheme="dark"
+        defaultTheme="light"
         enableSystem={false}
         disableTransitionOnChange
       >

@@ -1,6 +1,6 @@
 -- 2026-10-16: daily Cloudflare Web Analytics traffic (src/config/db/schema.sqlite.ts → traffic_daily).
 -- Additive only (new table + index). Filled by: npx tsx scripts/sync-traffic.ts
--- Apply: npx wrangler d1 execute hotel-lobby-db --remote --file scripts/sql/2026-10-16-traffic-daily.sql
+-- Apply: npx wrangler d1 execute deckcraft --remote --file scripts/sql/2026-10-16-traffic-daily.sql
 
 CREATE TABLE IF NOT EXISTS `traffic_daily` (
 	`id` text PRIMARY KEY NOT NULL,

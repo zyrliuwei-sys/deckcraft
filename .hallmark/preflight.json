@@ -1,0 +1,8 @@
+{
+  "date": "2026-10-16",
+  "framework": "TanStack Start React 19",
+  "fonts": "DM Sans Variable + Bebas Neue (replace display for new scope)",
+  "palette": "existing dark brown OKLCH replaced in new DeckCraft scope by PowerPoint-inspired warm white / vermilion",
+  "motion": "motion installed; scoped opacity/transform only",
+  "database": "existing D1 deckcraft preserved"
+}
