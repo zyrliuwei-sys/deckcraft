@@ -13,7 +13,11 @@ import {
 import { Link } from '@/core/i18n/navigation';
 import { envConfigs } from '@/config';
 import { m } from '@/paraglide/messages.js';
-import { DeckcraftFooter, DeckcraftHeader } from '@/blocks/deckcraft/chrome';
+import {
+  DeckcraftFooter,
+  DeckcraftHeader,
+  SlideFrame,
+} from '@/blocks/deckcraft/chrome';
 
 import '@/styles/deckcraft-guides.css';
 
@@ -54,7 +58,6 @@ function External({
 function AlphaNote() {
   return (
     <aside className="dc-guide-note">
-      <span className="dc-guide-note-dot" />
       <div>
         <strong>{m['dc.guide.alpha']()}</strong>
         <p>{m['dc.guide.alpha.body']()}</p>
@@ -125,10 +128,7 @@ export function DownloadGuide() {
       <section className="dc-container">
         <div className="dc-download-panel">
           <div className="dc-download-choice">
-            <p className="dc-guide-release">
-              <span />
-              {m['dc.guide.release']()}
-            </p>
+            <p className="dc-guide-release">{m['dc.guide.release']()}</p>
             <div
               className="dc-platform-tabs"
               role="group"
@@ -326,16 +326,16 @@ export function TutorialsGuide() {
             <h2>{current.title}</h2>
           </div>
           <p className="dc-tutorial-intro">{current.body}</p>
-          <figure>
+          <SlideFrame caption={current.alt}>
             <img
+              key={current.image}
               src={'/imgs/deckcraft/' + current.image}
               alt={current.alt}
               width={1600}
               height={1000}
               loading="lazy"
             />
-            <figcaption>{current.alt}</figcaption>
-          </figure>
+          </SlideFrame>
           <ul className="dc-step-tips">
             {current.tips.map((tip) => (
               <li key={tip}>
@@ -466,9 +466,13 @@ export function CompareGuide() {
       </section>
       <section className="dc-container dc-choice-grid">
         <article>
-          <span className="dc-choice-symbol" aria-hidden="true">
-            ↗
-          </span>
+          <img
+            className="dc-choice-symbol"
+            src="/logo.svg"
+            alt=""
+            width="44"
+            height="44"
+          />
           <h2>{m['dc.guide.compare.dc.title']()}</h2>
           <p>{m['dc.guide.compare.dc.body']()}</p>
           <Link href="/app" className="dc-link">
@@ -481,7 +485,7 @@ export function CompareGuide() {
             className="dc-choice-symbol dc-choice-symbol-neutral"
             aria-hidden="true"
           >
-            ⊞
+            P
           </span>
           <h2>{m['dc.guide.compare.pp.title']()}</h2>
           <p>{m['dc.guide.compare.pp.body']()}</p>

@@ -57,7 +57,7 @@ yarn-error.log*
 
 # database
 /data/
-/drizzle/
+# Keep Drizzle SQL migrations and schema snapshots in Git for CI deployments.
 src/config/db/schema.ts
 
 # npm (project uses pnpm)

@@ -1,16 +1,71 @@
-import { useState } from 'react';
-import { ArrowRight, ArrowUpRight, Github, Menu, X } from 'lucide-react';
+import { useEffect, useState, type ReactNode } from 'react';
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Github,
+  Menu,
+  Moon,
+  Sun,
+  X,
+} from 'lucide-react';
+import { useTheme } from 'next-themes';
 
+import { useSession } from '@/core/auth/client';
 import { Link } from '@/core/i18n/navigation';
 import { envConfigs } from '@/config';
 import { deckcraftLinks } from '@/config/deckcraft';
 import { m } from '@/paraglide/messages.js';
-import { BuiltWithShipAny } from '@/components/built-with-shipany';
 
 import '@/styles/deckcraft.css';
 
+/** Renders `*phrase*` segments of a message with the highlighter mark. */
+export function Marked({ text }: { text: string }) {
+  return (
+    <>
+      {text
+        .split('*')
+        .map((part, index) =>
+          index % 2 ? <mark key={index}>{part}</mark> : part
+        )}
+    </>
+  );
+}
+
+/**
+ * The brand's signature container: media set inside a 16:9-minded slide
+ * frame with crop marks, captioned below like a speaker note.
+ */
+export function SlideFrame({
+  children,
+  caption,
+  stage = false,
+  className = '',
+}: {
+  children: ReactNode;
+  caption?: string;
+  stage?: boolean;
+  className?: string;
+}) {
+  return (
+    <figure
+      className={['dc-frame', stage && 'dc-frame-stage', className]
+        .filter(Boolean)
+        .join(' ')}
+    >
+      <div className="dc-frame-crop">
+        <div className="dc-frame-surface">{children}</div>
+      </div>
+      {caption && <figcaption>{caption}</figcaption>}
+    </figure>
+  );
+}
+
 export function DeckcraftHeader() {
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { resolvedTheme, setTheme } = useTheme();
+  const { data: session } = useSession();
+  useEffect(() => setMounted(true), []);
   const links = [
     { href: '/#features', label: m['dc.nav.features']() },
     { href: '/download', label: m['dc.nav.download']() },
@@ -24,10 +79,6 @@ export function DeckcraftHeader() {
           <img src="/logo.svg" alt="" width="34" height="34" />
           <span>{envConfigs.app_name.toLowerCase()}</span>
         </Link>
-        <span className="dc-header-divider" aria-hidden="true" />
-        <span className="dc-header-description">
-          {m['dc.nav.descriptor']()}
-        </span>
         <nav className="dc-desktop-nav" aria-label={m['dc.nav.main']()}>
           {links.map((link) => (
             <Link key={link.href} href={link.href}>
@@ -36,6 +87,36 @@ export function DeckcraftHeader() {
           ))}
         </nav>
         <div className="dc-header-actions">
+          <div className="dc-theme-switch">
+            {(['light', 'dark'] as const).map((theme) => (
+              <button
+                key={theme}
+                type="button"
+                aria-label={
+                  theme === 'light'
+                    ? m['common.nav.theme_light']()
+                    : m['common.nav.theme_dark']()
+                }
+                title={
+                  theme === 'light'
+                    ? m['common.nav.theme_light']()
+                    : m['common.nav.theme_dark']()
+                }
+                aria-pressed={mounted && resolvedTheme === theme}
+                onClick={() => setTheme(theme)}
+              >
+                {theme === 'light' ? <Sun size={17} /> : <Moon size={17} />}
+              </button>
+            ))}
+          </div>
+          <Link
+            className="dc-login-link"
+            href={session?.user ? '/settings/profile' : '/sign-in'}
+          >
+            {session?.user
+              ? m['common.nav.profile']()
+              : m['common.nav.sign_in']()}
+          </Link>
           <a
             className="dc-github-link"
             href={deckcraftLinks.github}
@@ -118,6 +199,9 @@ export function DeckcraftFooter() {
           </div>
           <div>
             <h3>{m['dc.footer.project']()}</h3>
+            <a href={`mailto:${deckcraftLinks.supportEmail}`}>
+              {m['dc.footer.support']()}
+            </a>
             <a href={deckcraftLinks.official} target="_blank" rel="noreferrer">
               {m['dc.footer.official']()}
               <ArrowUpRight size={12} />
@@ -141,7 +225,6 @@ export function DeckcraftFooter() {
           <div>
             <Link href="/privacy-policy">{m['dc.footer.privacy']()}</Link>
             <Link href="/terms-of-service">{m['dc.footer.terms']()}</Link>
-            <BuiltWithShipAny className="dc-attribution" />
           </div>
         </div>
       </div>

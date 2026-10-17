@@ -1,25 +1,58 @@
-/* Hallmark · macrostructure: Workbench · tone: modern-minimal · anchor hue: vermilion */
+/*
+ * DeckCraft brand system · "Projector"
+ * The 16:9 slide is the unit of everything: framed media with crop marks,
+ * a highlighter mark on the one word that matters, cobalt for action,
+ * graphite "stage" for the presenter surface. Light and dark themes.
+ */
 :root {
-  --color-dc-paper: oklch(99% 0.004 58);
+  /* Surfaces */
+  --color-dc-paper: oklch(98.5% 0.004 255);
   --color-dc-white: oklch(100% 0 0);
-  --color-dc-ink: oklch(23% 0.025 248);
-  --color-dc-muted: oklch(48% 0.018 248);
-  --color-dc-accent: oklch(55% 0.203 33);
-  --color-dc-accent-hover: oklch(47% 0.184 32);
-  --color-dc-peach: oklch(95% 0.027 42);
-  --color-dc-peach-deep: oklch(88% 0.07 43);
-  --color-dc-line: oklch(88% 0.009 58);
-  --color-dc-subtle: oklch(97% 0.006 58);
-  --color-dc-green: oklch(32% 0.052 175);
-  --color-dc-mint: oklch(92% 0.035 155);
-  --color-dc-lilac: oklch(91% 0.037 290);
-  --color-dc-yellow: oklch(91% 0.11 90);
-  --color-dc-focus: oklch(47% 0.17 250);
-  --color-dc-shadow: oklch(22% 0.03 35 / 0.12);
-  --color-dc-overlay: oklch(20% 0.03 248 / 0.72);
-  --font-display: 'DM Sans Variable', 'Segoe UI', sans-serif;
-  --font-body: 'DM Sans Variable', 'Segoe UI', sans-serif;
-  --font-slide: Georgia, 'Times New Roman', serif;
+  --color-dc-subtle: oklch(96.4% 0.007 262);
+  --color-dc-stage: oklch(20.5% 0.028 264);
+  --color-dc-stage-2: oklch(27% 0.03 264);
+
+  /* Text */
+  --color-dc-ink: oklch(21% 0.03 264);
+  --color-dc-muted: oklch(47% 0.022 262);
+  --color-dc-on-stage: oklch(94% 0.01 262);
+  --color-dc-on-stage-muted: oklch(74% 0.02 262);
+
+  /* Brand */
+  --color-dc-accent: oklch(49% 0.2 263);
+  --color-dc-on-accent: oklch(100% 0 0);
+  --color-dc-accent-hover: oklch(42% 0.19 264);
+  --color-dc-tint: oklch(95% 0.028 262);
+  --color-dc-marker: oklch(90% 0.15 99);
+  --color-dc-marker-soft: oklch(96.5% 0.06 99);
+
+  /* Lines & states */
+  --color-dc-line: oklch(90% 0.01 262);
+  --color-dc-line-strong: oklch(80% 0.014 262);
+  --color-dc-focus: oklch(55% 0.2 263);
+  --color-dc-success: oklch(52% 0.12 158);
+  --color-dc-shadow: oklch(25% 0.04 264 / 0.12);
+  --color-dc-overlay: oklch(18% 0.03 264 / 0.72);
+
+  /* Legacy aliases (editor + older pages read these names) */
+  --color-dc-peach: var(--color-dc-tint);
+  --color-dc-peach-deep: var(--color-dc-marker);
+  --color-dc-green: var(--color-dc-stage);
+  --color-dc-mint: oklch(93% 0.04 158);
+  --color-dc-lilac: oklch(92% 0.03 240);
+  --color-dc-yellow: var(--color-dc-marker);
+
+  /* Type */
+  --font-display:
+    'Bricolage Grotesque Variable', 'Geist Variable', 'PingFang SC', 'Segoe UI',
+    sans-serif;
+  --font-body:
+    'Geist Variable', 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', sans-serif;
+  --font-mono:
+    ui-monospace, 'SF Mono', 'Cascadia Mono', 'Roboto Mono', Menlo, monospace;
+  --font-slide: var(--font-display);
+
+  /* Space */
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 16px;
@@ -27,15 +60,44 @@
   --space-xl: 32px;
   --space-2xl: 48px;
   --space-3xl: 64px;
-  --space-4xl: 96px;
-  --text-display: clamp(3rem, 4.8vw, 4.5rem);
-  --text-section: clamp(2rem, 3vw, 2.85rem);
+  --space-4xl: 104px;
+
+  /* Scale */
+  --text-display: clamp(2.6rem, 5vw, 4.6rem);
+  --text-section: clamp(1.9rem, 3.2vw, 2.9rem);
+
+  /* Motion */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --dur-fast: 160ms;
   --dur-medium: 280ms;
-  --radius-dc-button: 5px;
-  --radius-dc-panel: 12px;
+
+  /* Shape: one radius family, slide-like and crisp */
+  --radius-dc-button: 6px;
+  --radius-dc-panel: 10px;
   --rule-dc: 1px solid var(--color-dc-line);
+}
+
+.dark {
+  --color-dc-paper: oklch(18% 0.018 264);
+  --color-dc-white: oklch(22% 0.022 264);
+  --color-dc-subtle: oklch(25% 0.024 264);
+  --color-dc-stage: oklch(15% 0.018 264);
+  --color-dc-stage-2: oklch(24% 0.03 264);
+  --color-dc-ink: oklch(95% 0.008 262);
+  --color-dc-muted: oklch(75% 0.02 262);
+  --color-dc-accent: oklch(75% 0.13 263);
+  --color-dc-accent-hover: oklch(82% 0.1 263);
+  --color-dc-on-accent: oklch(18% 0.03 264);
+  --color-dc-tint: oklch(28% 0.05 262);
+  --color-dc-marker: oklch(43% 0.08 99);
+  --color-dc-marker-soft: oklch(27% 0.035 99);
+  --color-dc-line: oklch(33% 0.022 262);
+  --color-dc-line-strong: oklch(45% 0.026 262);
+  --color-dc-focus: oklch(78% 0.13 263);
+  --color-dc-success: oklch(75% 0.12 158);
+  --color-dc-shadow: oklch(8% 0.02 264 / 0.4);
+  --color-dc-mint: oklch(29% 0.04 158);
+  --color-dc-lilac: oklch(29% 0.04 240);
 }

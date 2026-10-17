@@ -8,5 +8,6 @@ export const deckcraftLinks = {
   roadmap: 'https://github.com/storytold/deckcraft/blob/main/ROADMAP.md',
   community: 'https://discord.gg/artcraft',
   site: 'https://deckcraft.me',
+  supportEmail: 'support@deckcraft.me',
   version: '0.7.0',
 } as const;

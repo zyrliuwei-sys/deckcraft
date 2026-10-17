@@ -1,10 +1,7 @@
 import { useState } from 'react';
 import {
-  ArrowDown,
   ArrowRight,
   ArrowUpRight,
-  Check,
-  CheckCircle2,
   ChevronDown,
   Code2,
   Download,
@@ -12,164 +9,73 @@ import {
   FileCheck2,
   Laptop,
   Monitor,
-  MousePointer2,
   Plus,
   ShieldCheck,
-  Sparkles,
+  Terminal,
 } from 'lucide-react';
 
 import { Link } from '@/core/i18n/navigation';
 import { deckcraftLinks } from '@/config/deckcraft';
 import { m } from '@/paraglide/messages.js';
 
-import { DeckcraftFooter, DeckcraftHeader } from './chrome';
-
-function SlidePreview() {
-  const [slide, setSlide] = useState(0);
-  const slides = [
-    {
-      label: m['dc.slide.one.label'](),
-      title: m['dc.slide.one.title'](),
-      body: m['dc.slide.one.body'](),
-    },
-    {
-      label: m['dc.slide.two.label'](),
-      title: m['dc.slide.two.title'](),
-      body: m['dc.slide.two.body'](),
-    },
-    {
-      label: m['dc.slide.three.label'](),
-      title: m['dc.slide.three.title'](),
-      body: m['dc.slide.three.body'](),
-    },
-  ];
-  return (
-    <div className="dc-hero-visual dc-reveal">
-      <div className="dc-slide-stage">
-        <div className="dc-slide-back" aria-hidden="true" />
-        <div
-          key={slide}
-          className={`dc-slide dc-slide-${slide}`}
-          role="tabpanel"
-          id="dc-slide-panel"
-          aria-labelledby={`dc-slide-tab-${slide}`}
-        >
-          <div className="dc-slide-copy">
-            <span className="dc-slide-label">{slides[slide].label}</span>
-            <h2>{slides[slide].title}</h2>
-            <p>{slides[slide].body}</p>
-            <div className="dc-slide-footer">
-              <span>{m['dc.slide.footer']()}</span>
-              <span>0{slide + 1}</span>
-            </div>
-          </div>
-          <div className="dc-slide-art" aria-hidden="true">
-            <div className="dc-slide-sculpture">
-              <i />
-              <i />
-              <i />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="dc-visual-note">
-        <MousePointer2 size={17} />
-        <span>{m['dc.hero.visual_note']()}</span>
-      </div>
-      <div className="dc-preview-caption">
-        <p>
-          <Sparkles size={12} />
-          {m['dc.hero.preview_caption']()}
-        </p>
-        <div
-          className="dc-preview-tabs"
-          role="tablist"
-          aria-label={m['dc.hero.preview_label']()}
-        >
-          {slides.map((item, index) => (
-            <button
-              key={item.label}
-              type="button"
-              role="tab"
-              id={`dc-slide-tab-${index}`}
-              aria-selected={slide === index}
-              aria-controls="dc-slide-panel"
-              aria-label={item.label}
-              tabIndex={slide === index ? 0 : -1}
-              onClick={() => setSlide(index)}
-              onKeyDown={(event) => {
-                if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
-                  event.preventDefault();
-                  const next =
-                    (index +
-                      (event.key === 'ArrowRight' ? 1 : -1) +
-                      slides.length) %
-                    slides.length;
-                  setSlide(next);
-                  document.getElementById(`dc-slide-tab-${next}`)?.focus();
-                }
-              }}
-            >
-              <span />
-            </button>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
+import { DeckcraftFooter, DeckcraftHeader, Marked, SlideFrame } from './chrome';
 
 function Hero() {
   return (
-    <>
-      <div className="dc-announcement">
-        <span>
-          <Code2 size={13} />
-          {m['dc.announcement']()}
-        </span>
-        <a href={deckcraftLinks.github} target="_blank" rel="noreferrer">
-          {m['dc.announcement.link']()}
-          <ArrowRight size={12} />
-        </a>
-      </div>
-      <section className="dc-hero" id="overview">
-        <div className="dc-container dc-hero-inner">
-          <div className="dc-hero-copy dc-reveal">
-            <span className="dc-eyebrow">{m['dc.hero.eyebrow']()}</span>
-            <h1>
-              {m['dc.hero.title_one']()}
-              <span>{m['dc.hero.title_two']()}</span>
-            </h1>
-            <p className="dc-hero-description">{m['dc.hero.description']()}</p>
-            <div className="dc-hero-actions">
-              <Link className="dc-button" href="/app">
-                {m['dc.open']()}
-                <ArrowUpRight size={16} />
-              </Link>
-              <Link className="dc-button dc-button-secondary" href="/download">
-                <Download size={16} />
-                {m['dc.download']()}
-              </Link>
-            </div>
-            <div className="dc-hero-facts">
-              <span>
-                <Check size={13} />
-                {m['dc.hero.free']()}
-              </span>
-              <span>
-                <Check size={13} />
-                {m['dc.hero.no_account']()}
-              </span>
-              <span>
-                <Check size={13} />
-                {m['dc.hero.your_files']()}
-              </span>
-            </div>
+    <section className="dc-hero" id="overview">
+      <div className="dc-container dc-hero-inner">
+        <div className="dc-hero-copy dc-reveal">
+          <p className="dc-eyebrow">{m['dc.hero.eyebrow']()}</p>
+          <h1>
+            <mark>{m['dc.hero.title_one']()}</mark> {m['dc.hero.title_two']()}
+          </h1>
+          <p className="dc-hero-description">{m['dc.hero.description']()}</p>
+          <div className="dc-hero-actions">
+            <Link className="dc-button" href="/app">
+              {m['dc.open']()}
+              <ArrowUpRight size={16} />
+            </Link>
+            <Link className="dc-button dc-button-secondary" href="/download">
+              <Download size={16} />
+              {m['dc.download']()}
+            </Link>
           </div>
-          <SlidePreview />
         </div>
-      </section>
-    </>
+        <SlideFrame
+          className="dc-hero-frame dc-reveal"
+          caption={m['dc.hero.caption']()}
+          stage
+        >
+          <img
+            src="/imgs/deckcraft/editor.png"
+            alt={m['dc.features.create.alt']()}
+            width="1600"
+            height="1000"
+            fetchPriority="high"
+          />
+        </SlideFrame>
+      </div>
+      <div className="dc-container">
+        <ul className="dc-proof-strip">
+          <li>
+            <FileCheck2 size={17} strokeWidth={1.6} />
+            {m['dc.proof.pptx']()}
+          </li>
+          <li>
+            <Feather size={17} strokeWidth={1.6} />
+            {m['dc.proof.rust']()}
+          </li>
+          <li>
+            <Monitor size={17} strokeWidth={1.6} />
+            {m['dc.proof.platforms']()}
+          </li>
+          <li>
+            <ShieldCheck size={17} strokeWidth={1.6} />
+            {m['dc.proof.license']()}
+          </li>
+        </ul>
+      </div>
+    </section>
   );
 }
 
@@ -204,8 +110,12 @@ function FeatureTour() {
   return (
     <section className="dc-section" id="features">
       <div className="dc-container">
-        <h2 className="dc-section-heading">{m['dc.features.title']()}</h2>
-        <p className="dc-lead">{m['dc.features.description']()}</p>
+        <header className="dc-section-header">
+          <h2 className="dc-section-heading">
+            <Marked text={m['dc.features.title']()} />
+          </h2>
+          <p className="dc-lead">{m['dc.features.description']()}</p>
+        </header>
         <div className="dc-features-layout">
           <div className="dc-feature-tabs">
             {features.map((feature, index) => (
@@ -222,33 +132,25 @@ function FeatureTour() {
                   id={`dc-feature-button-${index}`}
                 >
                   {feature.title}
-                  <ChevronDown
-                    size={17}
-                    style={
-                      active === index
-                        ? { transform: 'rotate(180deg)' }
-                        : undefined
-                    }
-                  />
+                  <ChevronDown size={17} />
                 </button>
-                {active === index && (
-                  <div
-                    className="dc-feature-content"
-                    id={`dc-feature-${index}`}
-                    role="region"
-                    aria-labelledby={`dc-feature-button-${index}`}
-                  >
-                    <p>{feature.description}</p>
-                    <Link className="dc-link" href="/tutorials">
-                      {m['dc.features.learn']()}
-                      <ArrowRight size={14} />
-                    </Link>
-                  </div>
-                )}
+                <div
+                  className="dc-feature-content"
+                  id={`dc-feature-${index}`}
+                  role="region"
+                  aria-labelledby={`dc-feature-button-${index}`}
+                  hidden={active !== index}
+                >
+                  <p>{feature.description}</p>
+                  <Link className="dc-link" href="/tutorials">
+                    {m['dc.features.learn']()}
+                    <ArrowRight size={14} />
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
-          <figure className="dc-feature-figure">
+          <SlideFrame caption={m['dc.features.caption']()}>
             <img
               key={active}
               src={`/imgs/deckcraft/${features[active].image}`}
@@ -257,27 +159,79 @@ function FeatureTour() {
               height="1000"
               loading="lazy"
             />
-            <figcaption>{m['dc.features.caption']()}</figcaption>
-          </figure>
+          </SlideFrame>
         </div>
-        <div className="dc-proof-strip">
-          <span>
-            <FileCheck2 size={16} />
-            {m['dc.proof.pptx']()}
-          </span>
-          <span>
-            <Feather size={16} />
-            {m['dc.proof.rust']()}
-          </span>
-          <span>
-            <Monitor size={16} />
-            {m['dc.proof.platforms']()}
-          </span>
-          <span>
-            <ShieldCheck size={16} />
-            {m['dc.proof.license']()}
-          </span>
+      </div>
+    </section>
+  );
+}
+
+function About() {
+  const blocks = [
+    { title: m['dc.about.slides.title'](), body: m['dc.about.slides.body']() },
+    { title: m['dc.about.pptx.title'](), body: m['dc.about.pptx.body']() },
+    { title: m['dc.about.online.title'](), body: m['dc.about.online.body']() },
+    { title: m['dc.about.who.title'](), body: m['dc.about.who.body']() },
+  ];
+  return (
+    <section className="dc-section dc-about" id="what-is-deckcraft">
+      <div className="dc-container dc-about-layout">
+        <div className="dc-about-intro">
+          <h2 className="dc-section-heading">
+            <Marked text={m['dc.about.title']()} />
+          </h2>
+          <p className="dc-about-lede">{m['dc.about.p1']()}</p>
+          <p>{m['dc.about.p2']()}</p>
+          <Link href="/app" className="dc-link">
+            {m['dc.about.cta']()}
+            <ArrowRight size={15} />
+          </Link>
         </div>
+        <div className="dc-about-grid">
+          {blocks.map((block) => (
+            <article key={block.title}>
+              <h3>{block.title}</h3>
+              <p>{block.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HowTo() {
+  const steps = [
+    { title: m['dc.howto.open.title'](), body: m['dc.howto.open.body']() },
+    { title: m['dc.howto.design.title'](), body: m['dc.howto.design.body']() },
+    {
+      title: m['dc.howto.animate.title'](),
+      body: m['dc.howto.animate.body'](),
+    },
+    {
+      title: m['dc.howto.present.title'](),
+      body: m['dc.howto.present.body'](),
+    },
+  ];
+  return (
+    <section className="dc-section dc-howto" id="how-to">
+      <div className="dc-container">
+        <header className="dc-section-header">
+          <h2 className="dc-section-heading">
+            <Marked text={m['dc.howto.title']()} />
+          </h2>
+          <p className="dc-lead">{m['dc.howto.body']()}</p>
+        </header>
+        <ol className="dc-sorter">
+          {steps.map((step) => (
+            <li key={step.title}>
+              <div className="dc-sorter-slide">
+                <h3>{step.title}</h3>
+                <p>{step.body}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );
@@ -287,30 +241,32 @@ function Freedom() {
   return (
     <section className="dc-section dc-freedom">
       <div className="dc-container dc-freedom-inner">
+        <SlideFrame caption={m['dc.freedom.caption']()} stage>
+          <img
+            src="/imgs/deckcraft/dark-mode.png"
+            width="1600"
+            height="1000"
+            alt={m['dc.freedom.alt']()}
+            loading="lazy"
+          />
+        </SlideFrame>
         <div className="dc-freedom-copy">
-          <h2 className="dc-section-heading">{m['dc.freedom.title']()}</h2>
+          <h2 className="dc-section-heading">
+            <Marked text={m['dc.freedom.title']()} />
+          </h2>
           <p className="dc-lead">{m['dc.freedom.body']()}</p>
           <ul className="dc-check-list">
-            <li>
-              <CheckCircle2 size={16} />
-              {m['dc.freedom.one']()}
-            </li>
-            <li>
-              <CheckCircle2 size={16} />
-              {m['dc.freedom.two']()}
-            </li>
-            <li>
-              <CheckCircle2 size={16} />
-              {m['dc.freedom.three']()}
-            </li>
+            <li>{m['dc.freedom.one']()}</li>
+            <li>{m['dc.freedom.two']()}</li>
+            <li>{m['dc.freedom.three']()}</li>
           </ul>
-          <Link href="/compare" className="dc-link">
-            {m['dc.freedom.compare']()}
-            <ArrowRight size={16} />
-          </Link>
-          <div>
+          <div className="dc-inline-links">
+            <Link href="/compare" className="dc-link">
+              {m['dc.freedom.compare']()}
+              <ArrowRight size={15} />
+            </Link>
             <a
-              className="dc-rust-label"
+              className="dc-link dc-link-quiet"
               href={deckcraftLinks.github}
               target="_blank"
               rel="noreferrer"
@@ -321,15 +277,6 @@ function Freedom() {
             </a>
           </div>
         </div>
-        <figure className="dc-freedom-figure">
-          <img
-            src="/imgs/deckcraft/dark-mode.png"
-            width="1600"
-            height="1000"
-            alt={m['dc.freedom.alt']()}
-            loading="lazy"
-          />
-        </figure>
       </div>
     </section>
   );
@@ -350,45 +297,51 @@ function Downloads() {
       link: '/download?platform=windows',
     },
     {
-      icon: Code2,
+      icon: Terminal,
       name: 'Linux',
       body: m['dc.downloads.linux'](),
       link: '/download?platform=linux',
     },
   ];
   return (
-    <section className="dc-section" id="download">
-      <div className="dc-container">
-        <div className="dc-section-topline">
-          <div>
-            <h2 className="dc-section-heading">{m['dc.downloads.title']()}</h2>
-            <p className="dc-lead">{m['dc.downloads.body']()}</p>
-          </div>
+    <section className="dc-section dc-downloads" id="download">
+      <div className="dc-container dc-downloads-layout">
+        <div>
+          <h2 className="dc-section-heading">
+            <Marked text={m['dc.downloads.title']()} />
+          </h2>
+          <p className="dc-lead">{m['dc.downloads.body']()}</p>
           <Link href="/app" className="dc-link">
             {m['dc.downloads.browser']()}
             <ArrowUpRight size={15} />
           </Link>
         </div>
-        <div className="dc-download-grid">
-          {platforms.map((platform) => (
-            <div className="dc-download-card" key={platform.name}>
-              <platform.icon size={30} strokeWidth={1.4} />
-              <h3>{platform.name}</h3>
-              <p>{platform.body}</p>
-              <Link href={platform.link} className="dc-link">
-                {m['dc.downloads.get']()} {platform.name}
-                <ArrowDown size={14} />
-              </Link>
-            </div>
-          ))}
+        <div>
+          <ul className="dc-platform-list">
+            {platforms.map((platform) => (
+              <li key={platform.name}>
+                <Link href={platform.link}>
+                  <platform.icon size={24} strokeWidth={1.4} />
+                  <span>
+                    <strong>{platform.name}</strong>
+                    <small>{platform.body}</small>
+                  </span>
+                  <span className="dc-platform-cta">
+                    {m['dc.downloads.get']()}
+                    <Download size={15} />
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <p className="dc-download-footnote">
+            {m['dc.downloads.note']()}{' '}
+            <a href={deckcraftLinks.release} target="_blank" rel="noreferrer">
+              {m['dc.downloads.notes']()}
+              <ArrowUpRight size={12} />
+            </a>
+          </p>
         </div>
-        <p className="dc-download-footnote">
-          {m['dc.downloads.note']()}{' '}
-          <a href={deckcraftLinks.release} target="_blank" rel="noreferrer">
-            {m['dc.downloads.notes']()}
-            <span aria-hidden="true"> ↗</span>
-          </a>
-        </p>
       </div>
     </section>
   );
@@ -396,27 +349,33 @@ function Downloads() {
 
 function Resources() {
   return (
-    <section className="dc-section dc-learn-section" id="resources">
+    <section className="dc-section" id="resources">
       <div className="dc-container">
-        <h2 className="dc-section-heading">{m['dc.resources.title']()}</h2>
-        <p className="dc-lead">{m['dc.resources.body']()}</p>
+        <header className="dc-section-header">
+          <h2 className="dc-section-heading">
+            <Marked text={m['dc.resources.title']()} />
+          </h2>
+          <p className="dc-lead">{m['dc.resources.body']()}</p>
+        </header>
         <div className="dc-resource-grid">
-          <Link href="/tutorials" className="dc-resource">
+          <Link href="/tutorials" className="dc-resource dc-resource-feature">
             <div className="dc-resource-art">
               <img
-                src="/imgs/deckcraft/editor.png"
+                src="/imgs/deckcraft/sample-deck.png"
                 width="1600"
                 height="1000"
                 alt={m['dc.resources.start.alt']()}
                 loading="lazy"
               />
             </div>
-            <h3>{m['dc.resources.start.title']()}</h3>
-            <p>{m['dc.resources.start.body']()}</p>
-            <span className="dc-link">
-              {m['dc.resources.start.link']()}
-              <ArrowRight size={14} />
-            </span>
+            <div className="dc-resource-copy">
+              <h3>{m['dc.resources.start.title']()}</h3>
+              <p>{m['dc.resources.start.body']()}</p>
+              <span className="dc-link">
+                {m['dc.resources.start.link']()}
+                <ArrowRight size={14} />
+              </span>
+            </div>
           </Link>
           <Link href="/tutorials?step=animation" className="dc-resource">
             <div className="dc-resource-art">
@@ -428,30 +387,24 @@ function Resources() {
                 loading="lazy"
               />
             </div>
-            <h3>{m['dc.resources.motion.title']()}</h3>
-            <p>{m['dc.resources.motion.body']()}</p>
-            <span className="dc-link">
-              {m['dc.resources.motion.link']()}
-              <ArrowRight size={14} />
-            </span>
-          </Link>
-          <Link href="/compare" className="dc-resource">
-            <div
-              className="dc-resource-art dc-comparison-art"
-              aria-hidden="true"
-            >
-              <span>
-                <img src="/logo.svg" alt="" width="44" height="44" />
+            <div className="dc-resource-copy">
+              <h3>{m['dc.resources.motion.title']()}</h3>
+              <p>{m['dc.resources.motion.body']()}</p>
+              <span className="dc-link">
+                {m['dc.resources.motion.link']()}
+                <ArrowRight size={14} />
               </span>
-              <b>vs.</b>
-              <span>P</span>
             </div>
-            <h3>{m['dc.resources.compare.title']()}</h3>
-            <p>{m['dc.resources.compare.body']()}</p>
-            <span className="dc-link">
-              {m['dc.resources.compare.link']()}
-              <ArrowRight size={14} />
-            </span>
+          </Link>
+          <Link href="/compare" className="dc-resource dc-resource-text">
+            <div className="dc-resource-copy">
+              <h3>{m['dc.resources.compare.title']()}</h3>
+              <p>{m['dc.resources.compare.body']()}</p>
+              <span className="dc-link">
+                {m['dc.resources.compare.link']()}
+                <ArrowRight size={14} />
+              </span>
+            </div>
           </Link>
         </div>
       </div>
@@ -459,19 +412,34 @@ function Resources() {
   );
 }
 
-function FAQ() {
-  const questions = [
-    { q: m['dc.faq.free.q'](), a: m['dc.faq.free.a']() },
-    { q: m['dc.faq.pptx.q'](), a: m['dc.faq.pptx.a']() },
-    { q: m['dc.faq.browser.q'](), a: m['dc.faq.browser.a']() },
-    { q: m['dc.faq.account.q'](), a: m['dc.faq.account.a']() },
-    { q: m['dc.faq.official.q'](), a: m['dc.faq.official.a']() },
+type Locale = 'en' | 'zh';
+
+export function homeFaq(locale?: Locale) {
+  const o = locale ? { locale } : undefined;
+  return [
+    { q: m['dc.faq.free.q']({}, o), a: m['dc.faq.free.a']({}, o) },
+    { q: m['dc.faq.make.q']({}, o), a: m['dc.faq.make.a']({}, o) },
+    { q: m['dc.faq.pptx.q']({}, o), a: m['dc.faq.pptx.a']({}, o) },
+    { q: m['dc.faq.browser.q']({}, o), a: m['dc.faq.browser.a']({}, o) },
+    { q: m['dc.faq.platforms.q']({}, o), a: m['dc.faq.platforms.a']({}, o) },
+    {
+      q: m['dc.faq.alternative.q']({}, o),
+      a: m['dc.faq.alternative.a']({}, o),
+    },
+    { q: m['dc.faq.account.q']({}, o), a: m['dc.faq.account.a']({}, o) },
+    { q: m['dc.faq.official.q']({}, o), a: m['dc.faq.official.a']({}, o) },
   ];
+}
+
+function FAQ() {
+  const questions = homeFaq();
   return (
     <section className="dc-section" id="faq">
       <div className="dc-container dc-faq-layout">
-        <div>
-          <h2 className="dc-section-heading">{m['dc.faq.title']()}</h2>
+        <div className="dc-faq-intro">
+          <h2 className="dc-section-heading">
+            <Marked text={m['dc.faq.title']()} />
+          </h2>
           <p className="dc-lead">{m['dc.faq.body']()}</p>
           <a
             href={deckcraftLinks.github}
@@ -507,10 +475,10 @@ export function DeckcraftHome() {
         <Hero />
         <nav className="dc-subnav" aria-label={m['dc.nav.sections']()}>
           <div className="dc-container dc-subnav-inner">
-            <a href="#overview">{m['dc.nav.overview']()}</a>
             <a href="#features">{m['dc.nav.features']()}</a>
+            <a href="#what-is-deckcraft">{m['dc.nav.about']()}</a>
+            <a href="#how-to">{m['dc.nav.howto']()}</a>
             <a href="#download">{m['dc.nav.download']()}</a>
-            <a href="#resources">{m['dc.nav.resources']()}</a>
             <a href="#faq">{m['dc.nav.faq']()}</a>
             <Link href="/app" className="dc-link">
               {m['dc.nav.try']()}
@@ -519,16 +487,18 @@ export function DeckcraftHome() {
           </div>
         </nav>
         <FeatureTour />
+        <About />
+        <HowTo />
         <Freedom />
         <Downloads />
         <Resources />
         <FAQ />
         <section className="dc-final-cta">
           <div className="dc-container dc-final-inner">
-            <div>
-              <h2 className="dc-section-heading">{m['dc.final.title']()}</h2>
-              <p>{m['dc.final.body']()}</p>
-            </div>
+            <h2 className="dc-section-heading">
+              <Marked text={m['dc.final.title']()} />
+            </h2>
+            <p>{m['dc.final.body']()}</p>
             <Link href="/app" className="dc-button">
               {m['dc.open']()}
               <ArrowUpRight size={16} />

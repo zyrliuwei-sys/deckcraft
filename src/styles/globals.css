@@ -5,8 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --font-sans: 'DM Sans Variable', 'PingFang SC', sans-serif;
-  --font-serif-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  --font-sans: 'Geist Variable', 'PingFang SC', sans-serif;
+  --font-serif-display:
+    'Bricolage Grotesque Variable', 'PingFang SC', sans-serif;
 }
 
 @theme inline {
@@ -67,7 +68,7 @@
     --popover: var(--color-dc-white);
     --popover-foreground: var(--color-dc-ink);
     --primary: var(--color-dc-accent);
-    --primary-foreground: var(--color-dc-white);
+    --primary-foreground: var(--color-dc-on-accent);
     --secondary: var(--color-dc-peach);
     --secondary-foreground: var(--color-dc-ink);
     --muted: var(--color-dc-subtle);
@@ -75,7 +76,7 @@
     --accent: var(--color-dc-peach);
     --accent-foreground: var(--color-dc-ink);
     --destructive: var(--color-dc-accent);
-    --destructive-foreground: var(--color-dc-white);
+    --destructive-foreground: var(--color-dc-on-accent);
     --border: var(--color-dc-line);
     --input: var(--color-dc-line);
     --ring: var(--color-dc-focus);
@@ -84,11 +85,11 @@
     --chart-3: var(--color-dc-peach-deep);
     --chart-4: var(--color-dc-mint);
     --chart-5: var(--color-dc-lilac);
-    --radius: 0.4rem;
+    --radius: 0.375rem;
     --sidebar: var(--color-dc-white);
     --sidebar-foreground: var(--color-dc-ink);
     --sidebar-primary: var(--color-dc-accent);
-    --sidebar-primary-foreground: var(--color-dc-white);
+    --sidebar-primary-foreground: var(--color-dc-on-accent);
     --sidebar-accent: var(--color-dc-peach);
     --sidebar-accent-foreground: var(--color-dc-ink);
     --sidebar-border: var(--color-dc-line);

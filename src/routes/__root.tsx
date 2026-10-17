@@ -10,7 +10,8 @@ import {
   type ErrorComponentProps,
 } from '@tanstack/react-router';
 import { createServerFn } from '@tanstack/react-start';
-import dmSansLatinUrl from '@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2?url';
+import bricolageLatinUrl from '@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2?url';
+import geistLatinUrl from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
 import { ThemeProvider } from 'next-themes';
 
 import { envConfigs } from '@/config';
@@ -74,11 +75,17 @@ export const Route = createRootRoute({
           rel: 'preload',
           as: 'font',
           type: 'font/woff2',
-          href: dmSansLatinUrl,
+          href: bricolageLatinUrl,
           crossOrigin: 'anonymous',
-          // Desktop only: on slow mobile networks this 37 KB file competes
-          // with the CSS and hero image; body text falls back to the system
-          // sans (font-display: optional, so no layout shift either way).
+        },
+        {
+          rel: 'preload',
+          as: 'font',
+          type: 'font/woff2',
+          href: geistLatinUrl,
+          crossOrigin: 'anonymous',
+          // Desktop only: on slow mobile networks body text falls back to the
+          // system sans (font-display: optional, so no layout shift either way).
           media: '(min-width: 601px)',
         },
         { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },

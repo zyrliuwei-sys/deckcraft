@@ -1,44 +1,48 @@
-# Hotel Lobby AI visual identity
+# DeckCraft visual identity: Projector
 
-## Design read
+## Direction
 
-A premium consumer video tool for friends and creators. The visual world is a late-night recording room: cinematic stills, restrained movement, warm copper, and editorial typography.
+A presentation software site for students, teachers, and people making decks for work. The visual language comes from the slide itself: clear framing, generous canvas space, and a yellow highlighter on the phrase that matters. Product screenshots demonstrate the actual editor.
 
-## Design dials
+Design variance: 6/10, with an offset hero and varied section layouts. Motion intensity: 4/10, limited to entrance, image changes, and interaction feedback. Visual density: 4/10, balancing readable SEO copy with product demonstrations.
 
-- Variance: 7/10. The full-frame hero carries the composition; the rest stays ordered.
-- Motion: 4/10. One image entrance and one title reveal, with reduced-motion support.
-- Density: 3/10. Generous space around the form and content.
+## Palette
 
-## Color
+The site defaults to a light canvas and offers explicit light/dark buttons in the shared header. The selected theme persists in local storage through next-themes. Dark mode uses graphite surfaces, light text, a brighter cobalt action color, and a muted gold highlighter. Product screenshots preserve their original colors.
 
-| Role           | Value                  | Usage                         |
-| -------------- | ---------------------- | ----------------------------- |
-| Stage          | `oklch(0.15 0.009 42)` | Site background               |
-| Raised surface | `oklch(0.20 0.012 44)` | Forms and panels              |
-| Warm paper     | `oklch(0.94 0.013 78)` | Main copy                     |
-| Copper         | `oklch(0.73 0.09 57)`  | Primary controls and keylines |
-| Muted text     | `oklch(0.71 0.021 67)` | Supporting copy               |
-| Hairline       | `oklch(0.34 0.019 44)` | Structural borders            |
+| Role          | Token               | OKLCH value       |
+| ------------- | ------------------- | ----------------- |
+| Paper         | `--color-dc-paper`  | `98.5% 0.004 255` |
+| Ink           | `--color-dc-ink`    | `21% 0.03 264`    |
+| Muted copy    | `--color-dc-muted`  | `47% 0.022 262`   |
+| Cobalt action | `--color-dc-accent` | `49% 0.2 263`     |
+| Highlight     | `--color-dc-marker` | `90% 0.15 99`     |
+| Editor frame  | `--color-dc-stage`  | `20.5% 0.028 264` |
 
-The same dark palette applies to the default and optional theme modes to avoid a visual break in this brand.
+The `.dark` overrides in `tokens.css` define the matching dark palette. `--color-dc-on-accent` keeps action labels separate from card surfaces so button contrast stays readable in both modes.
 
-## Type
+`tokens.css` is the source for the palette, spacing, typography, radii, and motion. `src/styles/globals.css` maps those values into the application component tokens.
 
-- Display: Bebas Neue, regular. Use for major campaign statements and section titles.
-- Interface and body: DM Sans Variable, weight 400-750. Use for navigation, forms, and explanations.
-- Chinese fallback: PingFang SC, Microsoft YaHei, sans-serif.
+## Typography and logo
 
-## Imagery and mark
+- Display: Bricolage Grotesque Variable, with substantial weight and compact tracking.
+- Body and interface: Geist Variable. Chinese falls back to PingFang SC and Microsoft YaHei.
+- Captions: the system monospace stack, used sparingly for screenshot annotations.
+- The logo and favicon use the cobalt slide mark. Preserve a clear margin around the mark and pair it with the DeckCraft wordmark in navigation.
 
-- Film-still photography shows exactly two distinct performers with one central microphone.
-- Warm orange interiors are part of the scene; page chrome remains charcoal and copper.
-- The circular microphone mark uses one fine copper ring and a simple mic silhouette.
-- Avoid neon glows, purple gradients, fake user interfaces, and decorative badges on photos.
+Fonts are served locally, with Latin font preloads in the document head. Do not add remote font stylesheets.
 
 ## Components
 
-- Primary buttons: solid copper, dark text, 2px radius.
-- Secondary buttons: copper/brown hairline, light text.
-- Inputs: raised charcoal, visible focus ring, restrained 2px radius.
-- Panels: use spacing and rules before filled cards.
+- `SlideFrame`: real editor imagery within a crisp frame, crop corners, and an optional caption underneath. Reserve image dimensions to avoid layout shifts.
+- `Marked`: a flat yellow highlight behind selected words; avoid gradient-filled text.
+- Primary action: cobalt background and white label; secondary action: a quiet border on the light canvas.
+- Corners: 6px for buttons and 10px for panels. Use spacing and rules before adding more cards.
+- Homepage features: selectable descriptions with a matching editor screenshot. FAQs use native disclosure elements.
+- Inner pages: shared navigation, type, buttons, and framing for download, tutorials, and comparison views.
+
+## Responsive and accessibility behavior
+
+At narrow widths, the hero and section layouts collapse into one column. Navigation becomes an expandable menu, while login and theme buttons stay visible. Download choices remain usable without horizontal page scrolling. Keep visible keyboard focus outlines, semantic heading order, descriptive image alternatives, and reduced-motion overrides.
+
+The website is an independent guide and browser access point. Preserve the footer attribution to ArtCraft / Storytold and the existing product limitations.
