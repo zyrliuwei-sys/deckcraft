@@ -2,6 +2,11 @@
 
 Production URL: https://deckcraft.me
 
+The apex hostname is a Workers Custom Domain with managed HTTPS. The two
+previous apex A records were replaced during launch; Cloudflare Email Routing
+MX records and the SPF TXT record were preserved. When connecting another
+hostname, resolve conflicting website DNS records before the first deployment.
+
 GitHub source: https://github.com/zyrliuwei-sys/deckcraft, branch `main`.
 
 ## Automatic deployment
