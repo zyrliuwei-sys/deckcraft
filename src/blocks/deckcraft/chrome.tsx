@@ -15,6 +15,7 @@ import { Link } from '@/core/i18n/navigation';
 import { envConfigs } from '@/config';
 import { deckcraftLinks } from '@/config/deckcraft';
 import { m } from '@/paraglide/messages.js';
+import { SiteUserMenu } from '@/components/site-user-menu';
 
 import '@/styles/deckcraft.css';
 
@@ -109,14 +110,18 @@ export function DeckcraftHeader() {
               </button>
             ))}
           </div>
-          <Link
-            className="dc-login-link"
-            href={session?.user ? '/settings/profile' : '/sign-in'}
-          >
-            {session?.user
-              ? m['common.nav.profile']()
-              : m['common.nav.sign_in']()}
-          </Link>
+          {session?.user ? (
+            <SiteUserMenu
+              key={session.user.id}
+              name={session.user.name}
+              email={session.user.email}
+              image={session.user.image}
+            />
+          ) : (
+            <Link className="dc-login-link" href="/sign-in">
+              {m['common.nav.sign_in']()}
+            </Link>
+          )}
           <a
             className="dc-github-link"
             href={deckcraftLinks.github}
