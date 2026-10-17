@@ -125,6 +125,7 @@ html {
   display: flex;
   gap: 4px;
   margin-left: auto;
+  margin-right: 32px;
 }
 .dc-desktop-nav a {
   font-size: 14px;
