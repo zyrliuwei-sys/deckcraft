@@ -19,6 +19,7 @@ import { deckcraftLinks } from '@/config/deckcraft';
 import { m } from '@/paraglide/messages.js';
 
 import { DeckcraftFooter, DeckcraftHeader, Marked, SlideFrame } from './chrome';
+import { InlineEditor } from './inline-editor';
 
 function Hero() {
   return (
@@ -31,10 +32,10 @@ function Hero() {
           </h1>
           <p className="dc-hero-description">{m['dc.hero.description']()}</p>
           <div className="dc-hero-actions">
-            <Link className="dc-button" href="/app">
-              {m['dc.open']()}
+            <a className="dc-button" href="#editor">
+              {m['dc.inline.launch']()}
               <ArrowUpRight size={16} />
-            </Link>
+            </a>
             <Link className="dc-button dc-button-secondary" href="/download">
               <Download size={16} />
               {m['dc.download']()}
@@ -480,12 +481,13 @@ export function DeckcraftHome() {
             <a href="#how-to">{m['dc.nav.howto']()}</a>
             <a href="#download">{m['dc.nav.download']()}</a>
             <a href="#faq">{m['dc.nav.faq']()}</a>
-            <Link href="/app" className="dc-link">
+            <a href="#editor" className="dc-link">
               {m['dc.nav.try']()}
               <ArrowUpRight size={14} />
-            </Link>
+            </a>
           </div>
         </nav>
+        <InlineEditor />
         <FeatureTour />
         <About />
         <HowTo />
@@ -499,10 +501,10 @@ export function DeckcraftHome() {
               <Marked text={m['dc.final.title']()} />
             </h2>
             <p>{m['dc.final.body']()}</p>
-            <Link href="/app" className="dc-button">
-              {m['dc.open']()}
+            <a href="#editor" className="dc-button">
+              {m['dc.inline.launch']()}
               <ArrowUpRight size={16} />
-            </Link>
+            </a>
           </div>
         </section>
       </main>

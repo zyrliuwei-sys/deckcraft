@@ -1061,6 +1061,50 @@ html {
   border-radius: 99px;
 }
 
+/* Homepage editor loads its WebAssembly resources only after an explicit start. */
+.dc-inline-editor {
+  background: var(--color-dc-white);
+}
+.dc-inline-launch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.dc-site button.dc-button {
+  color: var(--color-dc-on-accent);
+}
+.dc-site button.dc-button-secondary {
+  color: var(--color-dc-ink);
+}
+.dc-inline-status {
+  margin-bottom: 16px;
+  color: var(--color-dc-muted);
+}
+.dc-inline-viewport {
+  margin-top: 20px;
+  overflow-x: auto;
+  border: var(--rule-dc);
+  border-radius: var(--radius-dc-panel);
+  background: var(--color-dc-stage);
+}
+.dc-inline-viewport iframe {
+  display: block;
+  width: 100%;
+  min-width: 960px;
+  height: 720px;
+  border: 0;
+}
+.dc-inline-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin-top: 24px;
+  color: var(--color-dc-muted);
+  font-size: 14px;
+}
+
 /* ---------- Motion ---------- */
 .dc-reveal {
   animation: dc-reveal 0.7s var(--ease-out) both;
