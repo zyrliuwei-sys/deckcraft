@@ -15,6 +15,7 @@ import { Link } from '@/core/i18n/navigation';
 import { envConfigs } from '@/config';
 import { deckcraftLinks } from '@/config/deckcraft';
 import { m } from '@/paraglide/messages.js';
+import { FooterBadgeList } from '@/components/footer-badge-list';
 import { SiteUserMenu } from '@/components/site-user-menu';
 
 import '@/styles/deckcraft.css';
@@ -219,6 +220,7 @@ export function DeckcraftFooter() {
             </a>
           </div>
         </div>
+        <FooterBadgeList className="my-8" />
         <div className="dc-footer-disclosure">
           <p>{m['dc.footer.independent']()}</p>
           <p>{m['dc.footer.trademark']()}</p>
