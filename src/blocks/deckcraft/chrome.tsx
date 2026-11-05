@@ -72,6 +72,7 @@ export function DeckcraftHeader() {
     { href: '/#features', label: m['dc.nav.features']() },
     { href: '/download', label: m['dc.nav.download']() },
     { href: '/tutorials', label: m['dc.nav.learn']() },
+    { href: '/guides', label: m['dc.articles.nav']() },
     { href: '/compare', label: m['dc.nav.compare']() },
   ];
   return (
@@ -194,6 +195,7 @@ export function DeckcraftFooter() {
           <div>
             <h3>{m['dc.footer.resources']()}</h3>
             <Link href="/tutorials">{m['dc.nav.learn']()}</Link>
+            <Link href="/guides">{m['dc.articles.nav']()}</Link>
             <a href={deckcraftLinks.github} target="_blank" rel="noreferrer">
               GitHub
               <ArrowUpRight size={12} />

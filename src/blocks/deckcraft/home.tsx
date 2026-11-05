@@ -18,6 +18,7 @@ import { Link } from '@/core/i18n/navigation';
 import { deckcraftLinks } from '@/config/deckcraft';
 import { m } from '@/paraglide/messages.js';
 
+import { FeaturedGuides } from './articles';
 import { DeckcraftFooter, DeckcraftHeader, Marked, SlideFrame } from './chrome';
 import { InlineEditor } from './inline-editor';
 
@@ -480,6 +481,7 @@ export function DeckcraftHome() {
             <a href="#what-is-deckcraft">{m['dc.nav.about']()}</a>
             <a href="#how-to">{m['dc.nav.howto']()}</a>
             <a href="#download">{m['dc.nav.download']()}</a>
+            <a href="#guides">{m['dc.articles.nav']()}</a>
             <a href="#faq">{m['dc.nav.faq']()}</a>
             <a href="#editor" className="dc-link">
               {m['dc.nav.try']()}
@@ -494,6 +496,7 @@ export function DeckcraftHome() {
         <Freedom />
         <Downloads />
         <Resources />
+        <FeaturedGuides />
         <FAQ />
         <section className="dc-final-cta">
           <div className="dc-container dc-final-inner">

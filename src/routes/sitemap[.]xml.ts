@@ -2,12 +2,15 @@ import { createFileRoute } from '@tanstack/react-router';
 
 import { envConfigs } from '@/config';
 import { baseLocale, locales, localizeUrl } from '@/paraglide/runtime.js';
+import { GUIDE_SLUGS } from '@/content/guides';
 
 const STATIC_PATHS = [
   '',
   '/download',
   '/tutorials',
   '/compare',
+  '/guides',
+  ...GUIDE_SLUGS.map((slug) => `/guides/${slug}`),
   '/app',
   '/privacy-policy',
   '/terms-of-service',

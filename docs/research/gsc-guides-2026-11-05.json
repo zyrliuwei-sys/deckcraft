@@ -1,0 +1,177 @@
+{
+  "observedAt": "2026-11-05",
+  "property": "sc-domain:deckcraft.me",
+  "source": "Google Search Console UI via Tabbit",
+  "period": "3 months (selected rolling period; exact start/end not captured)",
+  "searchType": "Web",
+  "totals": {
+    "clicks": 31,
+    "impressions": 824,
+    "ctr": "3.8%",
+    "position": 7.3
+  },
+  "coverage": "All 23 rows, read pages 1–10, 11–20, and 21–23",
+  "queries": [
+    {
+      "query": "deckcraft download",
+      "clicks": 4,
+      "impressions": 37,
+      "ctr": "10.8%",
+      "position": 5.9
+    },
+    {
+      "query": "deckcraft online",
+      "clicks": 4,
+      "impressions": 27,
+      "ctr": "14.8%",
+      "position": 4.4
+    },
+    {
+      "query": "deckcraft",
+      "clicks": 1,
+      "impressions": 35,
+      "ctr": "2.9%",
+      "position": 10.1
+    },
+    {
+      "query": "deckcraf",
+      "clicks": 1,
+      "impressions": 13,
+      "ctr": "7.7%",
+      "position": 5.2
+    },
+    {
+      "query": "deck craft",
+      "clicks": 0,
+      "impressions": 103,
+      "ctr": "0%",
+      "position": 10.7
+    },
+    {
+      "query": "deck craft download",
+      "clicks": 0,
+      "impressions": 10,
+      "ctr": "0%",
+      "position": 7.2
+    },
+    {
+      "query": "deckcraft vs powerpoint",
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": "0%",
+      "position": 6.4
+    },
+    {
+      "query": "deckraft",
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": "0%",
+      "position": 7.1
+    },
+    {
+      "query": "deckcraft slides",
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": "0%",
+      "position": 9.1
+    },
+    {
+      "query": "덱크래프트",
+      "clicks": 0,
+      "impressions": 7,
+      "ctr": "0%",
+      "position": 4.1
+    },
+    {
+      "query": "download deckcraft",
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": "0%",
+      "position": 7.5
+    },
+    {
+      "query": "deckcraft web",
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": "0%",
+      "position": 5.2
+    },
+    {
+      "query": "storytold deckcraft",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": "0%",
+      "position": 5.0
+    },
+    {
+      "query": "deckcraft powerpoint",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": "0%",
+      "position": 9.0
+    },
+    {
+      "query": "deckgraft",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": "0%",
+      "position": 13.0
+    },
+    {
+      "query": "deckcraft download pc",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": "0%",
+      "position": 1.0
+    },
+    {
+      "query": "open source presentation software",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": "0%",
+      "position": 1.0
+    },
+    {
+      "query": "dek craft",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": "0%",
+      "position": 3.0
+    },
+    {
+      "query": "deckceaft",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": "0%",
+      "position": 4.0
+    },
+    {
+      "query": "deckcarft",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": "0%",
+      "position": 5.0
+    },
+    {
+      "query": "storytold/deckcraft",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": "0%",
+      "position": 6.0
+    },
+    {
+      "query": "ppt craft",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": "0%",
+      "position": 7.0
+    },
+    {
+      "query": "what is deckcraft",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": "0%",
+      "position": 11.0
+    }
+  ]
+}

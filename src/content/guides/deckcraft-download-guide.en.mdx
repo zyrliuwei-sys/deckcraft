@@ -1,0 +1,179 @@
+export const meta = {
+  title: 'DeckCraft Download Guide for Windows, Mac & Linux',
+  description:
+    'Choose the right DeckCraft download, install it on your computer, verify the release, and troubleshoot first-launch problems without risking your original slides.',
+  category: 'Download · Installation',
+  updatedAt: '2026-11-05',
+  readingMinutes: 10,
+  image: '/imgs/guides/dark-mode.webp',
+  imageAlt:
+    'DeckCraft desktop-style workspace in dark mode with a chart slide open',
+  imageCaption:
+    'The application workspace is what you are installing; a source-code archive or command-line package is a different download. Upstream DeckCraft screenshot.',
+  imageWidth: 1600,
+  imageHeight: 1000,
+  sections: [
+    { id: 'choose', title: 'Choose the correct download' },
+    { id: 'source', title: 'Find and verify a release' },
+    { id: 'windows', title: 'Install on Windows' },
+    { id: 'mac', title: 'Install on macOS' },
+    { id: 'linux', title: 'Install on Linux' },
+    { id: 'first-run', title: 'Check the first launch' },
+    { id: 'updates', title: 'Update without losing work' },
+    { id: 'troubleshooting', title: 'Troubleshoot installation' },
+    { id: 'faq', title: 'Frequently asked questions' },
+  ],
+};
+
+<h2 id="choose">Which DeckCraft download do you need?</h2>
+
+The right download depends on three things: your operating system, your processor architecture, and whether you want an installed or portable application. Decide those first. It is easy to download a valid file that simply does not match your computer, especially when a release lists desktop applications, command-line tools, browser bundles, and source archives together.
+
+For the shortest route, visit the [DeckCraft download page](/download). For the current upstream build, use the [official GitHub latest-release page](https://github.com/storytold/deckcraft/releases/latest) and read its asset list. This independent guide site may link to an older tested release in its quick-download panel. A fixed version is not necessarily the newest version, and the browser editor is maintained separately from desktop downloads.
+
+Here is the decision order to follow:
+
+1. **Choose the operating system:** Windows, macOS, or the appropriate Linux distribution format.
+2. **Confirm the processor type:** x64/x86_64 is different from ARM64/aarch64. Read the computer's system information rather than guessing from its brand.
+3. **Choose the package type:** an installer integrates the app with your system; a portable archive is extracted into a folder; a Linux package may use your distribution's package manager.
+4. **Confirm that it is the graphical app:** a filename containing `cli` is intended for command-line use. “Source code” is for building the software, not a normal double-click installation.
+
+If you only want to try editing a few slides, you can skip installation and open the [online editor](/app). The [browser guide](/guides/deckcraft-online-guide) explains its requirements and how to save your work. Choosing the web version first can help you decide whether the workflow suits you before setting up a desktop copy.
+
+<h2 id="source">Find a release and check what you downloaded</h2>
+
+Use the `storytold/deckcraft` repository as the download source. Read the release title, notes, and complete asset list before choosing a file. At the time this guide was checked, the release page listed v0.15.1 as the latest release; use the live page for subsequent updates. Avoid treating a version number in a screenshot or an old article as a permanent recommendation. [Upstream releases](https://github.com/storytold/deckcraft/releases).
+
+Keep the downloaded file and its release information together until you have completed your first test. A small note with the version, operating system, architecture, and download date makes a future bug report much easier to write. It also prevents confusion when multiple installers have accumulated in your Downloads folder.
+
+The release provides a `SHA256SUMS.txt` file. A checksum can confirm that a downloaded file matches the listed bytes. Compare the checksum for the exact filename from the same release; a checksum for a different build is expected to differ. This is an integrity check, not a blanket assurance about all behavior of an application.
+
+For example, these commands calculate a local file's SHA-256 hash. Replace the example filename with the actual downloaded filename:
+
+```powershell
+# Windows PowerShell
+Get-FileHash .\downloaded-deckcraft.msi -Algorithm SHA256
+```
+
+```bash
+# macOS
+shasum -a 256 downloaded-deckcraft.dmg
+
+# Linux
+sha256sum downloaded-deckcraft.AppImage
+```
+
+You do not need to run these examples to follow the rest of the guide. If the values do not match, stop using that copy and download the correct asset again from the release page. Do not rename one architecture's package to make it look like another; changing the name does not change the contents.
+
+<h2 id="windows">Install DeckCraft on Windows</h2>
+
+First, check whether your PC uses an Intel/AMD 64-bit processor or an ARM-based processor. “Windows laptop” alone does not identify the architecture. In the upstream naming scheme, `windows-x64` targets the former and `windows-arm64` targets the latter. Confirm the available options in the release you select. The [upstream Windows download instructions](https://github.com/storytold/deckcraft#windows) describe the packages.
+
+### Use an installer for a regular setup
+
+Download the matching `.msi` package and wait for the download to finish. Open it from the folder where it was saved. Read the installation prompts and use the normal installation location unless your organization requires something else. Once installation completes, start the app and test a new document before opening a valuable presentation.
+
+If Windows displays a warning, inspect the source, filename, and publisher information. A warning is a reason to check those details, not a reason to follow an unrelated tutorial that disables protections globally. On a managed work computer, installation restrictions may be set by your administrator. A different package format does not override your organization's software policy.
+
+### Use a portable archive when that workflow suits you
+
+Download the matching portable ZIP, extract the entire archive into a dedicated folder, and launch the application from the extracted folder. Do not run it from the archive preview. Keep supporting files together; copying only the executable may omit files the package expects beside it.
+
+Choose a stable location rather than a temporary folder you routinely clean. Create a shortcut if you need one, but keep documents in a separate project folder. Separating application files from slide documents makes later replacement or removal of the portable app less confusing.
+
+<h2 id="mac">Install DeckCraft on macOS</h2>
+
+Choose the macOS application DMG from the release assets. The upstream project lists a universal application package for Apple silicon and Intel. The command-line ZIP is a separate product for terminal workflows; it is not the normal graphical application installer. Check the [macOS package description](https://github.com/storytold/deckcraft#macos) for the selected release.
+
+Open the downloaded disk image. Follow its installation instructions, typically copying the app into Applications, then launch the installed copy. Once you have confirmed it opens, eject the mounted disk image so you do not accidentally keep starting the temporary mounted copy.
+
+If macOS blocks the launch, read the actual warning carefully. A download that is incomplete, incompatible, or blocked by a device-management rule requires a different response from a normal first-open confirmation. Check the release's compatibility and signing notes and your system settings. Avoid blanket commands that remove protections from every application on your computer.
+
+Run the first test in a folder you can find easily. Save a small deck, quit only after preserving it, and reopen the saved file. This verifies both the installation and your understanding of the file workflow. A successful launch alone does not tell you whether you can reliably recover your work after the app closes.
+
+<Figure
+  src="/imgs/guides/editor.webp"
+  alt="DeckCraft editing workspace with slide thumbnails, ribbon controls, and an active process-diagram slide"
+  caption="After installation, use a small sample or test deck to verify navigation, selection, text editing, and saving before moving a real project into the app. Upstream project screenshot."
+/>
+
+<h2 id="linux">Choose a Linux package for your environment</h2>
+
+Linux downloads require both an architecture choice and a distribution choice. The project's release assets include several package formats, but their availability can change between releases. Use the asset list and [upstream Linux documentation](https://github.com/storytold/deckcraft#linux) together. Do not install an x86_64 package on an ARM system just because the file extension matches your distribution.
+
+For Debian or Ubuntu, a `.deb` package is usually the familiar starting point. For an RPM-based distribution, use the matching `.rpm` option when supplied. A package manager can report dependency requirements more clearly than simply extracting arbitrary files. Review the proposed changes before accepting them, especially on a machine used for other work.
+
+An AppImage is useful when you want a standalone package. Save it in a stable directory, give that specific file permission to execute if required, and launch it. For a downloaded file named `downloaded-deckcraft.AppImage`, the basic commands are:
+
+```bash
+chmod +x ./downloaded-deckcraft.AppImage
+./downloaded-deckcraft.AppImage
+```
+
+These commands do not install missing system libraries or fix an architecture mismatch. If the app prints an error, keep the exact message. Consult the release documentation for the appropriate runtime packages instead of copying a long installation command intended for another distribution.
+
+On a headless server, remote session, virtual machine, or minimal desktop, graphical and file-dialog support may differ from a standard desktop installation. A package that downloads successfully is not evidence that the environment can render the application. If you are evaluating the graphical editor, test it in the actual desktop session where you intend to use it.
+
+<h2 id="first-run">Complete a five-minute first-launch check</h2>
+
+Use a disposable deck with no confidential information. The purpose is to discover basic issues before they affect a deadline. Keep the task small enough that you can repeat it after an update:
+
+1. Open a blank or sample presentation and move between two slides.
+2. Add a short title and a shape, then change one formatting property.
+3. Save the document to a known folder using a distinctive filename.
+4. Reopen that saved copy and confirm the title and shape are still present.
+5. Enter presentation mode, check navigation, and return to editing.
+
+If you exchange PPTX files, add one extra step: open the saved PPTX in the program your recipient uses. Check layout and text, not just whether the file opens. For an existing PowerPoint deck, run the reverse test with a copy. Keep the original unchanged until you are satisfied with the results.
+
+<Figure
+  src="/imgs/guides/shape-format.webp"
+  alt="A selected shape in DeckCraft with contextual formatting controls and selection handles"
+  caption="A small formatting change makes a useful save-and-reopen test: it is easy to recognize whether both the content and the visual property survived. Upstream project screenshot."
+/>
+
+Record failures as specific observations: “The title wraps onto three lines after reopening” is more useful than “the file is broken.” If your first test fails, keep the test document. A minimal example can help distinguish a document-specific problem from a general application or environment issue.
+
+<h2 id="updates">Update without losing track of your work</h2>
+
+Before replacing an installation, save open documents and keep a backup of the files you care about. Read the release notes for the new version and confirm that the package still matches your operating system and processor. An update may improve one workflow while changing another, so repeat your small first-launch test after the update.
+
+For portable installations, extract the new release into a new folder first. That keeps the old package available while you compare behavior. Do not combine executable files from one release with supporting files from another. For managed installers, follow the project's upgrade instructions and your operating system's normal process.
+
+Avoid updating immediately before a presentation unless the update resolves a problem that prevents delivery and you have time to retest. The version you have rehearsed with is a better reference point than a newly downloaded version you have never opened. Keep a static backup or another tested presentation route when the event is important.
+
+<h2 id="troubleshooting">Troubleshoot the symptom you actually see</h2>
+
+### The downloaded file will not open
+
+Check the extension, whether the download finished, and whether it is the graphical application package. Compare the architecture and operating system with your machine. If an archive was downloaded, extract it completely. A source archive will not behave like an installer.
+
+### The application starts and immediately closes
+
+Try launching without opening your existing document. If it still closes, capture the application version, operating system, and any error output. The upstream project documents log locations and platform-specific launch issues in its [troubleshooting information](https://github.com/storytold/deckcraft#logs). Read the current guidance before changing rendering settings.
+
+### A presentation opens with missing fonts or shifted text
+
+This is usually a document compatibility investigation rather than a download problem. Compare the available fonts and inspect the original in its authoring application. Reinstalling the same package repeatedly is unlikely to explain which font or object changed. Use the [compatibility test in the comparison guide](/guides/deckcraft-vs-powerpoint-guide#compatibility).
+
+### I cannot install software on this computer
+
+Check the device's policy and ask the administrator when necessary. The [browser editor](/app) may be a suitable evaluation route if web applications are allowed. It still needs a supported browser environment, and it should not be used to bypass a workplace restriction on handling documents.
+
+<h2 id="faq">Frequently asked questions</h2>
+
+### Is the desktop application free to download?
+
+The upstream project distributes its application through public releases. Get the package from the project rather than a third-party download manager. Review the release's own information for licensing and included assets; this guide does not add a paid activation step.
+
+### Is deckcraft.me the upstream publisher?
+
+No. This is an independent guide and hosted browser workspace. The application source and release packages are maintained by the upstream DeckCraft project. Use the linked repository to verify the origin of a desktop download.
+
+### Should I download the newest version or use the website's tested version?
+
+Use the current release information and your needs to decide. Test a new release with a copy of your documents. The website's browser build and fixed download links may lag behind upstream, so avoid assuming the version numbers are synchronized.
+
+### What should I do after installation?
+
+Complete the small save-and-reopen test, then follow the [first-presentation guide](/guides/deckcraft-slides-guide). The [homepage](/) links to the editor, tutorials, downloads, and support information when you need to return to a starting point.
