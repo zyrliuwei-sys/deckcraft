@@ -649,7 +649,7 @@
   "admin.settings.groups.plausible.title": "Plausible",
   "admin.settings.groups.plausible.description": "Supports both site-specific and legacy scripts for self-hosted or cloud Plausible",
   "admin.settings.groups.adsense.title": "Google AdSense",
-  "admin.settings.groups.adsense.description": "Inject the AdSense script sitewide and serve /ads.txt from the configured publisher ID",
+  "admin.settings.groups.adsense.description": "Inject the AdSense script and account verification meta tag sitewide. The /ads.txt record is maintained separately.",
   "admin.settings.groups.crisp.title": "Crisp",
   "admin.settings.groups.crisp.description": "Crisp live chat widget",
   "admin.settings.groups.tawk.title": "Tawk.to",

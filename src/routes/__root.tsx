@@ -50,7 +50,7 @@ const getAnalyticsConfigs = createServerFn().handler(async () => {
     plausibleDomain: configs.plausible_domain?.trim() || '',
     plausibleSrc: configs.plausible_src?.trim() || '',
     clarityProjectId: configs.clarity_project_id?.trim() || '',
-    adsenseCode: configs.adsense_code?.trim() || '',
+    adsenseCode: configs.adsense_code?.trim() || 'ca-pub-2841223102464177',
     crispWebsiteId:
       configs.crisp_enabled === 'true'
         ? configs.crisp_website_id?.trim() || ''

@@ -649,7 +649,7 @@
   "admin.settings.groups.plausible.title": "Plausible",
   "admin.settings.groups.plausible.description": "支持云版或自托管 Plausible 的新版站点专属脚本及旧版脚本",
   "admin.settings.groups.adsense.title": "Google AdSense",
-  "admin.settings.groups.adsense.description": "全站注入 AdSense 脚本，并根据配置的 Publisher ID 生成 /ads.txt",
+  "admin.settings.groups.adsense.description": "全站注入 AdSense 脚本和账户验证 meta 标签。/ads.txt 记录单独维护。",
   "admin.settings.groups.crisp.title": "Crisp",
   "admin.settings.groups.crisp.description": "Crisp 客服聊天组件",
   "admin.settings.groups.tawk.title": "Tawk.to",
