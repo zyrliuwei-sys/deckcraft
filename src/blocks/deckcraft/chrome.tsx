@@ -10,13 +10,13 @@ import {
 } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
-import { useSession } from '@/core/auth/client';
 import { Link } from '@/core/i18n/navigation';
 import { envConfigs } from '@/config';
 import { deckcraftLinks } from '@/config/deckcraft';
 import { m } from '@/paraglide/messages.js';
+import { getLocale } from '@/paraglide/runtime.js';
 import { FooterBadgeList } from '@/components/footer-badge-list';
-import { SiteUserMenu } from '@/components/site-user-menu';
+import { getGuides, PRACTICAL_GUIDE_SLUGS } from '@/content/guides';
 
 import '@/styles/deckcraft.css';
 
@@ -66,7 +66,7 @@ export function DeckcraftHeader() {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
-  const { data: session } = useSession();
+  const english = getLocale() === 'en';
   useEffect(() => setMounted(true), []);
   const links = [
     { href: '/#features', label: m['dc.nav.features']() },
@@ -74,6 +74,12 @@ export function DeckcraftHeader() {
     { href: '/tutorials', label: m['dc.nav.learn']() },
     { href: '/guides', label: m['dc.articles.nav']() },
     { href: '/compare', label: m['dc.nav.compare']() },
+    ...(english
+      ? [
+          { href: '/about', label: m['dc.site.about']() },
+          { href: '/contact', label: m['dc.site.contact']() },
+        ]
+      : []),
   ];
   return (
     <header className="dc-header">
@@ -112,18 +118,6 @@ export function DeckcraftHeader() {
               </button>
             ))}
           </div>
-          {session?.user ? (
-            <SiteUserMenu
-              key={session.user.id}
-              name={session.user.name}
-              email={session.user.email}
-              image={session.user.image}
-            />
-          ) : (
-            <Link className="dc-login-link" href="/sign-in">
-              {m['common.nav.sign_in']()}
-            </Link>
-          )}
           <a
             className="dc-github-link"
             href={deckcraftLinks.github}
@@ -175,6 +169,10 @@ export function DeckcraftHeader() {
 }
 
 export function DeckcraftFooter() {
+  const english = getLocale() === 'en';
+  const practicalGuides = getGuides(getLocale()).filter((guide) =>
+    PRACTICAL_GUIDE_SLUGS.some((slug) => slug === guide.slug)
+  );
   return (
     <footer className="dc-footer">
       <div className="dc-container">
@@ -222,6 +220,21 @@ export function DeckcraftFooter() {
             </a>
           </div>
         </div>
+        {english && (
+          <nav
+            className="dc-footer-guides"
+            aria-label={m['dc.site.practical']()}
+          >
+            <h3>{m['dc.site.practical']()}</h3>
+            <div>
+              {practicalGuides.map((guide) => (
+                <Link key={guide.slug} href={`/guides/${guide.slug}`}>
+                  {guide.title}
+                </Link>
+              ))}
+            </div>
+          </nav>
+        )}
         <FooterBadgeList className="my-8" />
         <div className="dc-footer-disclosure">
           <p>{m['dc.footer.independent']()}</p>
@@ -232,8 +245,17 @@ export function DeckcraftFooter() {
             © {new Date().getFullYear()} {envConfigs.app_name}
           </span>
           <div>
+            {english && (
+              <>
+                <Link href="/about">{m['dc.site.about']()}</Link>
+                <Link href="/contact">{m['dc.site.contact']()}</Link>
+              </>
+            )}
             <Link href="/privacy-policy">{m['dc.footer.privacy']()}</Link>
             <Link href="/terms-of-service">{m['dc.footer.terms']()}</Link>
+            <Link href="/acceptable-use-policy">
+              {m['dc.site.acceptable_use']()}
+            </Link>
           </div>
         </div>
       </div>

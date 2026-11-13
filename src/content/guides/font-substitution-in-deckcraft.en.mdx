@@ -1,0 +1,74 @@
+export const meta = {
+  title: 'Font Substitution in DeckCraft Presentations',
+  description:
+    'See how a deliberately missing font changed a sample slide, then use a practical workflow to diagnose reflow, replace fonts, and check the file on the recipient’s machine.',
+  category: 'Typography · Troubleshooting',
+  updatedAt: '2026-11-13',
+  readingMinutes: 5,
+  image: '/imgs/guides/check-missing-font.png',
+  imageAlt:
+    'Sample title slide rendered after Inter was replaced by a deliberately nonexistent font name',
+  imageCaption:
+    'Our missing-font fixture, rendered with DeckCraft CLI v0.18.1 on macOS. The title became narrower and the subtitle wrapped at a different word.',
+  imageWidth: 960,
+  imageHeight: 540,
+  sections: [
+    { id: 'observed', title: 'What our font check showed' },
+    { id: 'diagnose', title: 'Recognize substitution' },
+    { id: 'fix', title: 'Fix the working copy' },
+    { id: 'handoff', title: 'Check another machine' },
+    { id: 'fonts', title: 'Embedded fonts and PDF' },
+  ],
+};
+
+<h2 id="observed">What our missing-font check showed</h2>
+
+A slide can open with every word present and still look wrong. Changing the font changes letter widths, spacing, and line breaks. That can turn a balanced title into a cramped one, push a caption into an image, or leave the last row of a table outside its intended box.
+
+On November 13, 2026, we created the bundled sample PPTX using **DeckCraft CLI v0.18.1 on macOS arm64**. We made a second copy of the file and replaced the XML font-family references named `Inter` with the deliberately nonexistent name `DeckCraftMissingFontQA20261113`. We did not alter the text, object positions, or slide size. Both copies were rendered with the same CLI, using slide index 0 and scale 1.
+
+The missing-font copy still rendered readable text. Its title was visibly narrower. In the original, the subtitle's first line ended with “to”; in the missing-font copy, it ended with “and.” The PNG outputs were different. That is a concrete example of fallback changing layout without making the slide fail to open.
+
+The exact fallback family selected by the renderer is **not verified**. This was a controlled missing-family test, not a test on two physical computers, and it does not prove which fallback a different operating system or the hosted browser editor will choose. The fixture had no embedded fonts. We did not verify preservation of embedded fonts from an external PowerPoint file.
+
+<Figure
+  src="/imgs/guides/check-title.png"
+  alt="Original sample title slide with Inter font references and a wider title"
+  caption="The original rendering under the same conditions. Compare the title width and the subtitle line ending with the missing-font image above; the wording and object positions were unchanged."
+  width={960}
+  height={540}
+/>
+
+<h2 id="diagnose">Recognize font substitution before changing the layout</h2>
+
+Begin with a reference image or PDF from the machine where the deck looks correct. Compare one short heading, one long paragraph, a numeric label, and a special character. A recurring change across several text boxes suggests a font issue more strongly than one accidentally moved object does.
+
+Check font family and weight separately. “Regular” and “Semibold” are different resources even when they belong to the same family. Also check whether the affected text inherits a theme font or uses an explicit font choice. If only some words change, mixed formatting inside a single paragraph may be involved.
+
+Watch for four useful symptoms: different wrapping, changed text width, unexpectedly heavy or light letters, and missing-glyph boxes. Each needs investigation; none alone identifies the exact replacement font. For example, one line can also move because the text box width changed. Compare the box and the typography before choosing a fix.
+
+Do not immediately shrink every affected paragraph. That can hide the symptom while making the deck harder to read. Resolve the font choice first, then adjust layout where the intended font still requires it.
+
+<h2 id="fix">Fix a copy with a font you can actually use</h2>
+
+Save a separate working copy. If you have legitimate access to the intended font, make it available through the operating system or the application's supported font workflow. Installing a font on the computer does not by itself prove that a browser editor can use it; reopen or refresh only after saving, then inspect the actual rendering.
+
+If the intended font is unavailable, choose a replacement that works in your delivery environment. Test a representative slide before changing the entire presentation. Compare numeral width in charts, punctuation in headings, and line length in dense paragraphs. A replacement that looks similar in a short title may behave quite differently in a table.
+
+Apply a consistent choice to related text. Check the title style, body text, chart labels, and notes independently rather than assuming a single edit updates everything. Where your build exposes theme or master controls, check inherited styles too. The exact availability of those controls depends on the application build; do not infer it from the newest desktop release when using the separately hosted editor.
+
+After the replacement, inspect at the size people will actually view. Rebalance boxes only where needed. Avoid adding manual line breaks to every paragraph: those can become awkward again after the recipient makes a small edit. Use deliberate line breaks for meaningful title phrasing, with enough spare space for modest differences.
+
+<h2 id="handoff">Check the saved file on the recipient's machine</h2>
+
+Save, close, and reopen the new copy before sharing it. Then test on a second machine or ask the recipient to check the exact file. Record the application, operating system, and fonts available there. Without that check, cross-machine fidelity remains **not verified**, even if the local result looks good.
+
+Send a reference PDF or screenshots when appearance matters. Ask the recipient to compare a short list of specific slides, especially slides with dense text, symbols, and chart labels. “Does slide 4 wrap the subtitle after this word?” gives a clearer answer than “Does everything look okay?”
+
+Keep the editable source and the reference export together, with matching revision names. If you later correct a font, regenerate the reference copy. Otherwise, a perfectly valid PDF can accidentally describe an older revision of the deck.
+
+<h2 id="fonts">Do embedded fonts or PDF remove the problem?</h2>
+
+Do not assume a PPTX contains a usable copy of every font it names. A family reference and an embedded font are different things. For an externally supplied presentation, embedded-font use in your DeckCraft workflow is **not verified** until you test that file and the receiving environment. Check font licensing before distributing font files separately.
+
+A PDF can be a helpful fixed reference, but export happens after DeckCraft has laid out the slide. If substitution already changed the line breaks, a PDF may preserve that changed layout. Correct and inspect the slides first. The [PDF versus PPTX guide](/guides/export-pdf-vs-pptx) explains what we checked in an actual export and how to choose the right handoff format. For broader file behavior, continue with the [PPTX compatibility checklist](/guides/open-pptx-in-deckcraft).

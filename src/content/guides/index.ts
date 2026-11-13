@@ -1,10 +1,20 @@
 import { lazy, type ComponentType } from 'react';
 
+import { locales } from '@/paraglide/runtime.js';
+
+export const PRACTICAL_GUIDE_SLUGS = [
+  'open-pptx-in-deckcraft',
+  'font-substitution-in-deckcraft',
+  'export-pdf-vs-pptx',
+  'save-reopen-presentation-checklist',
+] as const;
+
 export const GUIDE_SLUGS = [
   'deckcraft-slides-guide',
   'deckcraft-download-guide',
   'deckcraft-online-guide',
   'deckcraft-vs-powerpoint-guide',
+  ...PRACTICAL_GUIDE_SLUGS,
 ] as const;
 
 export type GuideMeta = {
@@ -44,6 +54,10 @@ export function getGuides(locale: string) {
     const guide = getGuide(slug, locale);
     return guide ? [guide] : [];
   });
+}
+
+export function getGuideLocales(slug: string) {
+  return locales.filter((locale) => getGuide(slug, locale) !== null);
 }
 
 const contentCache = new Map<string, ComponentType>();

@@ -1,0 +1,70 @@
+export const meta = {
+  title: 'Save, Reopen, and Deliver a DeckCraft Presentation',
+  description:
+    'A repeatable final check for editable slides and reading copies: name revisions, reopen the saved file, inspect fonts and motion, and verify the actual handoff package.',
+  category: 'Workflow · Final checks',
+  updatedAt: '2026-11-13',
+  readingMinutes: 4,
+  image: '/imgs/guides/check-title.png',
+  imageAlt:
+    'Northern Lights title slide from the saved and reopened sample presentation',
+  imageCaption:
+    'Our v0.18.1 sample title slide. Its before-and-after PNG renderings matched in the controlled round-trip check described below.',
+  imageWidth: 960,
+  imageHeight: 540,
+  sections: [
+    { id: 'prepare', title: 'Prepare a recoverable source' },
+    { id: 'reopen', title: 'Reopen the saved file' },
+    { id: 'sample', title: 'Our small round-trip check' },
+    { id: 'inspect', title: 'Inspect the demanding slides' },
+    { id: 'delivery', title: 'Verify the delivery package' },
+  ],
+};
+
+<h2 id="prepare">Prepare a source you can recover</h2>
+
+The final check begins before the last edit. Keep an untouched copy of a presentation supplied by someone else, and give your working version a clear revision name. A folder containing `review-source.pptx`, `review-r02.pptx`, and `review-r02.pdf` is easier to understand than one containing several files named “final.”
+
+Choose where the next saved file belongs. In a browser workflow, inspect the download location and move the completed file into your project folder if necessary. A visible slide in an open tab is not evidence that your latest changes exist in a file you can reopen. Use the application's file command, then verify the actual output.
+
+Before saving, note a few easy-to-check details: the expected slide count, the title of the last slide, a recent text change, and whether notes or hidden slides matter. These provide useful checkpoints after reopening. You do not need a large test plan; you need a short record that distinguishes the latest revision from an older one.
+
+<h2 id="reopen">Reopen the file that was actually saved</h2>
+
+Wait for the save or download to finish, then locate the output by filename, extension, and modification time. Preserve the current working state before closing or resetting anything. Open the saved copy through the application's visible file workflow and check that your recent edit is present.
+
+Do not substitute a browser page save for an application document save. An HTML file containing the surrounding website is not an editable presentation. Similarly, opening another editor tab does not establish that unsaved work moved with it. The [online editing guide](/guides/deckcraft-online-guide) explains these browser-specific distinctions.
+
+After reopening, compare the recorded checkpoints. Check the number of slides, their order, the final slide, and the specific text you changed. If any differ, stop and identify the correct source before doing more editing. Adding another hour of work to the wrong revision makes recovery harder.
+
+<h2 id="sample">What our controlled reopening check established</h2>
+
+On November 13, 2026, we tested the official **DeckCraft CLI v0.18.1 on macOS arm64** with its bundled eight-slide sample. The path was sample PPTX → native DeckCraft document → exported PPTX. We reopened the two PPTX files with the CLI's `info` command and compared their reported fields.
+
+The eight slide titles, layout names, shape counts, notes, hidden-slide flags, transition names, and animation counts matched. The first-slide PNG renderings also matched byte for byte. This is useful evidence that the tested sample could complete that particular save-and-reopen path.
+
+It is not a universal preservation claim. We did not compare every object property, test an external corporate template, or play the result in PowerPoint. Those behaviors remain **not verified**. The hosted browser editor was not upgraded or tested by these CLI commands. See the [PPTX check](/guides/open-pptx-in-deckcraft) for the reproducible commands and feature-by-feature limits.
+
+<Figure
+  src="/imgs/guides/check-chart.png"
+  alt="Bar-chart slide from the same sample used in the save and reopen exercise"
+  caption="Include a content-heavy slide in your review. A correct title slide alone cannot establish that chart labels, values, and object placement are right elsewhere."
+  width={960}
+  height={540}
+/>
+
+<h2 id="inspect">Inspect the slides most likely to reveal a problem</h2>
+
+Review one representative slide from each important content type. Check a dense text slide for wrapping and clipping, a chart for labels and values, a table for row boundaries, and a diagram for alignment and reading order. Then inspect every slide where a small error would change the meaning, such as a price, deadline, or conclusion.
+
+Treat fonts as a separate pass. Compare against a known reference and watch for narrower titles, extra lines, or missing characters. Our [missing-font experiment](/guides/font-substitution-in-deckcraft) showed that a file could remain readable while its line breaks changed. Readability alone is not proof of an unchanged layout.
+
+Treat motion as another separate pass. Run the complete click sequence on any slide where animation communicates meaning. Check what is visible before the first click, what appears next, and what remains afterward. A transition name in file metadata cannot confirm the on-screen motion. If the destination application is unavailable, record playback as **not verified**.
+
+<h2 id="delivery">Verify the package the recipient will receive</h2>
+
+Decide whether the recipient needs the editable PPTX, a PDF reading copy, or both. Keep revision names aligned and check that both were produced from the same final source. The [PDF versus PPTX guide](/guides/export-pdf-vs-pptx) covers the tradeoffs and the limits of our export check.
+
+Open the files from the exact folder you will share. Check that they are nonempty and that their slide or page counts are expected. Review the first and last pages, the most demanding slide, and any last-minute corrections. If you have access to the receiving computer, open the exact files there too; a second device is a delivery check, not merely an extra copy of the local check.
+
+Finish with a short handoff note: the editable source, the reference copy, the application version used for review, and any specific unresolved item. For example, “Morph playback in PowerPoint not verified” tells the recipient what still needs attention. Keep the source available until the handoff is accepted, so a correction can be made without rebuilding the presentation from a static export.

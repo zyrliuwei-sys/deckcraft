@@ -1252,7 +1252,7 @@
   "dc.footer.terms": "Terms",
   "dc.app.title": "DeckCraft Online Editor: Make Free Slides in Your Browser",
   "dc.app.description": "Use the real open-source DeckCraft presentation editor in your browser. No account required.",
-  "dc.app.version": "WEB EDITOR · v0.7.0",
+  "dc.app.version": "WEB EDITOR",
   "dc.app.tools": "Editor tools",
   "dc.app.sample": "Open sample deck",
   "dc.app.blank": "New blank deck",
@@ -1275,7 +1275,7 @@
   "dc.guide.download.eyebrow": "MAKE ROOM FOR YOUR NEXT IDEA",
   "dc.guide.download.title": "Your slides. Your computer.",
   "dc.guide.download.intro": "A free, open-source presentation app, built in Rust. Choose your platform and get the official desktop release.",
-  "dc.guide.release": "Official release · v0.7.0",
+  "dc.guide.release": "Official release · v0.18.1",
   "dc.guide.alpha": "Early development",
   "dc.guide.alpha.body": "DeckCraft is in alpha. Keep a backup of important files and check imported presentations before presenting. Features and file compatibility are still evolving.",
   "dc.guide.download.mac": "macOS",
@@ -1449,5 +1449,10 @@
   "dc.articles.try_home": "Try the homepage editor",
   "dc.articles.back_home": "Back to the homepage",
   "dc.articles.related": "Continue learning",
-  "dc.articles.meta": "DeckCraft Guides: Slides, Downloads, Online Editing & PowerPoint"
+  "dc.articles.meta": "DeckCraft Guides: Slides, Downloads, Online Editing & PowerPoint",
+  "dc.site.about": "About",
+  "dc.site.contact": "Contact",
+  "dc.site.acceptable_use": "Acceptable Use Policy",
+  "dc.site.practical": "File checks and delivery",
+  "dc.site.practical_body": "Check what survives a PPTX round trip, resolve font differences, and choose the right delivery format."
 }

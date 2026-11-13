@@ -3,9 +3,9 @@ import { createFileRoute, notFound } from '@tanstack/react-router';
 import { envConfigs } from '@/config';
 import { deckcraftLinks } from '@/config/deckcraft';
 import { m } from '@/paraglide/messages.js';
-import { getLocale, locales, localizeUrl } from '@/paraglide/runtime.js';
+import { getLocale, localizeUrl } from '@/paraglide/runtime.js';
 import { GuideArticle } from '@/blocks/deckcraft/articles';
-import { getGuide } from '@/content/guides';
+import { getGuide, getGuideLocales } from '@/content/guides';
 
 export const Route = createFileRoute('/guides/$slug')({
   loader: ({ params }) => {
@@ -39,7 +39,7 @@ export const Route = createFileRoute('/guides/$slug')({
       ],
       links: [
         { rel: 'canonical', href: canonical },
-        ...locales.map((loc) => ({
+        ...getGuideLocales(guide.slug).map((loc) => ({
           rel: 'alternate',
           hrefLang: loc,
           href: urlFor(path, loc),

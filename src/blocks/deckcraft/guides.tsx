@@ -12,7 +12,9 @@ import {
 
 import { Link } from '@/core/i18n/navigation';
 import { envConfigs } from '@/config';
+import { deckcraftLinks } from '@/config/deckcraft';
 import { m } from '@/paraglide/messages.js';
+import { PracticalGuides } from '@/blocks/deckcraft/articles';
 import {
   DeckcraftFooter,
   DeckcraftHeader,
@@ -21,9 +23,8 @@ import {
 
 import '@/styles/deckcraft-guides.css';
 
-const release =
-  'https://github.com/storytold/deckcraft/releases/download/v0.7.0/';
-const releases = 'https://github.com/storytold/deckcraft/releases/tag/v0.7.0';
+const release = `https://github.com/storytold/deckcraft/releases/download/v${deckcraftLinks.version}/`;
+const releases = deckcraftLinks.release;
 const repository = 'https://github.com/storytold/deckcraft';
 function Shell({ children }: { children: ReactNode }) {
   return (
@@ -83,7 +84,7 @@ export function DownloadGuide() {
       caption: m['dc.guide.download.mac.caption'](),
       button: m['dc.guide.download.mac.button'](),
       format: m['dc.guide.download.universal'](),
-      file: 'deckcraft-0.7.0-macos-universal.dmg',
+      file: `deckcraft-${deckcraftLinks.version}-macos-universal.dmg`,
       steps: [
         m['dc.guide.download.mac.1'](),
         m['dc.guide.download.mac.2'](),
@@ -96,7 +97,7 @@ export function DownloadGuide() {
       caption: m['dc.guide.download.win.caption'](),
       button: m['dc.guide.download.win.button'](),
       format: m['dc.guide.download.x64'](),
-      file: 'deckcraft-0.7.0-windows-x64.msi',
+      file: `deckcraft-${deckcraftLinks.version}-windows-x64.msi`,
       steps: [
         m['dc.guide.download.win.1'](),
         m['dc.guide.download.win.2'](),
@@ -109,7 +110,7 @@ export function DownloadGuide() {
       caption: m['dc.guide.download.linux.caption'](),
       button: m['dc.guide.download.linux.button'](),
       format: m['dc.guide.download.appimage'](),
-      file: 'deckcraft-0.7.0-linux-x86_64.AppImage',
+      file: `deckcraft-${deckcraftLinks.version}-linux-x86_64.AppImage`,
       steps: [
         m['dc.guide.download.linux.1'](),
         m['dc.guide.download.linux.2'](),
@@ -160,22 +161,38 @@ export function DownloadGuide() {
                   <>
                     <a
                       href={
-                        release + 'deckcraft-0.7.0-windows-x64-portable.zip'
+                        release +
+                        `deckcraft-${deckcraftLinks.version}-windows-x64-portable.zip`
                       }
                     >
                       {m['dc.guide.download.portable']()}
                     </a>
-                    <a href={release + 'deckcraft-0.7.0-windows-arm64.msi'}>
+                    <a
+                      href={
+                        release +
+                        `deckcraft-${deckcraftLinks.version}-windows-arm64.msi`
+                      }
+                    >
                       {m['dc.guide.download.arm']()}
                     </a>
                   </>
                 )}
                 {platform === 'linux' && (
                   <>
-                    <a href={release + 'deckcraft-0.7.0-linux-x86_64.deb'}>
+                    <a
+                      href={
+                        release +
+                        `deckcraft-${deckcraftLinks.version}-linux-x86_64.deb`
+                      }
+                    >
                       {m['dc.guide.download.deb']()}
                     </a>
-                    <a href={release + 'deckcraft-0.7.0-linux-x86_64.rpm'}>
+                    <a
+                      href={
+                        release +
+                        `deckcraft-${deckcraftLinks.version}-linux-x86_64.rpm`
+                      }
+                    >
                       {m['dc.guide.download.rpm']()}
                     </a>
                     <External href={releases}>
@@ -380,6 +397,7 @@ export function TutorialsGuide() {
       <div className="dc-container dc-guide-bottom-note">
         <AlphaNote />
       </div>
+      <PracticalGuides />
     </Shell>
   );
 }

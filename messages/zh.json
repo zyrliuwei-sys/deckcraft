@@ -1252,7 +1252,7 @@
   "dc.footer.terms": "使用条款",
   "dc.app.title": "DeckCraft 在线编辑器：在浏览器中免费制作幻灯片",
   "dc.app.description": "在浏览器中使用真实的 DeckCraft 开源演示文稿编辑器，无需注册。",
-  "dc.app.version": "网页编辑器 · v0.7.0",
+  "dc.app.version": "网页编辑器",
   "dc.app.tools": "编辑器工具",
   "dc.app.sample": "打开示例文稿",
   "dc.app.blank": "新建空白文稿",
@@ -1275,7 +1275,7 @@
   "dc.guide.download.eyebrow": "为下一个想法留出空间",
   "dc.guide.download.title": "你的幻灯片，你的电脑。",
   "dc.guide.download.intro": "用 Rust 构建的免费开源演示工具。选择你的系统，下载官方桌面版本。",
-  "dc.guide.release": "官方版本 · v0.7.0",
+  "dc.guide.release": "官方版本 · v0.18.1",
   "dc.guide.alpha": "早期开发阶段",
   "dc.guide.alpha.body": "DeckCraft 目前处于 alpha 阶段。请备份重要文件，并在正式演示前检查导入的演示文稿；功能和文件兼容性仍在完善。",
   "dc.guide.download.mac": "macOS",
@@ -1449,5 +1449,10 @@
   "dc.articles.try_home": "试用首页编辑器",
   "dc.articles.back_home": "返回首页",
   "dc.articles.related": "继续阅读",
-  "dc.articles.meta": "DeckCraft 使用指南：幻灯片、下载、在线编辑与 PowerPoint 对比"
+  "dc.articles.meta": "DeckCraft 使用指南：幻灯片、下载、在线编辑与 PowerPoint 对比",
+  "dc.site.about": "About",
+  "dc.site.contact": "Contact",
+  "dc.site.acceptable_use": "Acceptable Use Policy",
+  "dc.site.practical": "File checks and delivery",
+  "dc.site.practical_body": "Check what survives a PPTX round trip, resolve font differences, and choose the right delivery format."
 }

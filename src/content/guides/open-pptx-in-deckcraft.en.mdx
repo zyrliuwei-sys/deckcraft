@@ -1,0 +1,136 @@
+export const meta = {
+  title: "Open a PPTX in DeckCraft: What Survives and What Doesn't",
+  description:
+    'An item-by-item PPTX check covering animations, transitions, slide masters, and embedded fonts, with a reproducible v0.18.1 sample round trip and clearly marked limits.',
+  category: 'PPTX compatibility · Practical checks',
+  updatedAt: '2026-11-13',
+  readingMinutes: 6,
+  image: '/imgs/guides/check-title.png',
+  imageAlt: 'Northern Lights title slide rendered from the v0.18.1 sample PPTX',
+  imageCaption:
+    'Our check: title slide rendered by DeckCraft CLI v0.18.1 on macOS, November 13, 2026. This is a DeckCraft-generated sample, not a PowerPoint fidelity benchmark.',
+  imageWidth: 960,
+  imageHeight: 540,
+  sections: [
+    { id: 'scope', title: 'What we actually checked' },
+    { id: 'results', title: 'Results by feature' },
+    { id: 'reproduce', title: 'Repeat the sample check' },
+    { id: 'your-file', title: 'Check your own presentation' },
+    { id: 'decision', title: 'Decide what to deliver' },
+  ],
+};
+
+<h2 id="scope">What we actually checked</h2>
+
+Opening a PPTX successfully answers only the first question: can this application read the file? It does not establish whether animations play correctly, every master remains editable, or a recipient will see the same typography. Treat compatibility as a set of specific checks attached to a particular file and application version.
+
+On November 13, 2026, we used the official **DeckCraft CLI v0.18.1 on macOS arm64** to create the bundled eight-slide “Northern Lights” sample as a PPTX. We converted that file to DeckCraft's native format, converted it back to PPTX, and reopened both PPTX files with the CLI. We compared the reported slide fields and inspected the ZIP/XML package. We also rendered the first slide before and after the round trip; those two PNG files were byte-for-byte identical.
+
+This checks DeckCraft's own sample through its own importer and exporter. We did **not** open the result in Microsoft PowerPoint or test a collection of customer presentations. Visual fidelity in PowerPoint, live playback, and the separately hosted [browser editor](/app) are **not verified** by this exercise. No compatibility percentage follows from these results.
+
+<h2 id="results">What survived, and what remains not verified</h2>
+
+<div className="dc-guide-table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Feature</th>
+        <th scope="col">Observed result</th>
+        <th scope="col">Limit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Object animations</th>
+        <td>
+          The CLI reported one animation on slide 2 and four on slide 4 both
+          before and after. Two slide XML files contained timing blocks in each
+          PPTX.
+        </td>
+        <td>
+          Playback order, triggers, easing, and unsupported PowerPoint effects:{' '}
+          <strong>not verified</strong>.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Slide transitions</th>
+        <td>
+          All eight slides retained their reported transition names: fade, push,
+          wipe, morph, fade, cover, split, fade. Transition records existed for
+          all eight slides in both packages.
+        </td>
+        <td>
+          Rendered motion and PowerPoint Morph behavior:{' '}
+          <strong>not verified</strong>. A retained name is not a playback test.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Masters and layouts</th>
+        <td>
+          Both packages contained one slide master and eleven slide layouts.
+          Each slide's reported layout name was unchanged.
+        </td>
+        <td>
+          Custom corporate masters, placeholder inheritance, and master editing
+          in PowerPoint: <strong>not verified</strong>. Matching counts do not
+          prove identical content.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Embedded fonts</th>
+        <td>
+          The sample contained no embedded-font records or font parts, before or
+          after.
+        </td>
+        <td>
+          Embedded-font import, preservation, and use:{' '}
+          <strong>not verified</strong>. This sample cannot answer that
+          question.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+The CLI also reported unchanged slide titles, notes, shape counts, and hidden-slide flags. That is useful evidence for this sample, but it does not establish that every property on every object survived. We observed no loss in those recorded fields; we cannot provide a verified list of unsupported external-file features from this test alone.
+
+The project's [v0.18.1 animation notes](https://github.com/storytold/deckcraft/blob/v0.18.1/docs/animation-parity.md) describe uneven support across effects, including limits around Morph. Its [file-format parity notes](https://github.com/storytold/deckcraft/blob/v0.18.1/docs/file-format-parity.md) also distinguish internal round-trip coverage from comparison against external PowerPoint rendering. These are upstream descriptions, separate from our observations above.
+
+<h2 id="reproduce">Repeat the sample round trip</h2>
+
+Download the command-line package for your operating system from the [official v0.18.1 release](https://github.com/storytold/deckcraft/releases/tag/v0.18.1). In an empty test folder, with the executable available as `deckcraft-cli`, run:
+
+```sh
+deckcraft-cli --version
+deckcraft-cli run --sample --save sample.pptx
+deckcraft-cli convert sample.pptx reopened.deckcraft
+deckcraft-cli convert reopened.deckcraft roundtrip.pptx
+deckcraft-cli info sample.pptx
+deckcraft-cli info roundtrip.pptx
+deckcraft-cli render sample.pptx --slide 0 --scale 1 before.png
+deckcraft-cli render roundtrip.pptx --slide 0 --scale 1 after.png
+```
+
+Slide indices in these render commands start at zero. Record the executable version alongside your results. The desktop download and hosted web editor can be different builds; running these commands does not update or test the web editor.
+
+<Figure
+  src="/imgs/guides/check-chart.png"
+  alt="The sample's monthly clear-night bar chart rendered by DeckCraft CLI"
+  caption="A second sample slide rendered during our check. Use charts as a separate inspection target; matching title-slide images does not verify chart data or every slide."
+  width={960}
+  height={540}
+/>
+
+<h2 id="your-file">Check your own PPTX before editing the original</h2>
+
+Make a working copy and preserve an untouched source. In the application that created the file, capture a reference view of the slides most likely to fail: an animated sequence, a chart with labels, a dense table, a custom master, and a slide using a special font. Record the source application version and the expected click sequence for motion.
+
+Open the copy in DeckCraft. First compare static content: slide count, titles, visible objects, notes, and any hidden slides. Next check layout at presentation size. Look for changed line breaks, missing symbols, cropped chart labels, and images that moved. Use the [font substitution guide](/guides/font-substitution-in-deckcraft) when text spacing changes.
+
+Then test motion separately. Advance through the complete sequence; do not stop after the first effect works. Check both what appears and what should remain hidden until a later click. For master-dependent slides, try adding a slide with the same layout in the copy and inspect the resulting placeholders. This is more informative than judging one existing slide by appearance alone.
+
+Save under a new filename, close it, and reopen that saved file. If PowerPoint is the recipient's tool, inspect that exact saved copy there too. Mark a feature “not verified” whenever the necessary application, font, or playback environment is unavailable. Keep the original available so an incomplete check does not become an irreversible migration.
+
+<h2 id="decision">Choose the deliverable from the results</h2>
+
+Keep PPTX when recipients need editable slides, but include a short note about anything still unverified. For a static reading copy, [compare PDF with PPTX](/guides/export-pdf-vs-pptx) and review the exported PDF itself. If an animation carries essential meaning, provide a static explanation of the sequence as well. A file that opens is a starting point; a file checked in the recipient's actual workflow is the useful deliverable.

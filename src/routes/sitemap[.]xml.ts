@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 
 import { envConfigs } from '@/config';
 import { baseLocale, locales, localizeUrl } from '@/paraglide/runtime.js';
-import { GUIDE_SLUGS } from '@/content/guides';
+import { getGuide, getGuideLocales, GUIDE_SLUGS } from '@/content/guides';
 
 const STATIC_PATHS = [
   '',
@@ -10,7 +10,6 @@ const STATIC_PATHS = [
   '/tutorials',
   '/compare',
   '/guides',
-  ...GUIDE_SLUGS.map((slug) => `/guides/${slug}`),
   '/app',
   '/privacy-policy',
   '/terms-of-service',
@@ -22,6 +21,7 @@ type Entry = {
   lastModified?: string;
   changeFrequency: string;
   priority: number;
+  languages?: readonly (typeof locales)[number][];
 };
 
 function urlFor(path: string, locale: string): string {
@@ -34,14 +34,15 @@ function urlFor(path: string, locale: string): string {
 // recommended hreflang form) — so /zh pages are real <loc>s that crawlers and
 // the IndexNow sitemap submit pick up, not just alternates of the en page.
 function entryXml(e: Entry): string {
+  const languages = e.languages ?? locales;
   const alternates = [
-    ...locales.map(
+    ...languages.map(
       (loc) =>
         `    <xhtml:link rel="alternate" hreflang="${loc}" href="${urlFor(e.path, loc)}"/>`
     ),
     `    <xhtml:link rel="alternate" hreflang="x-default" href="${urlFor(e.path, baseLocale)}"/>`,
   ].join('\n');
-  return locales
+  return languages
     .map((loc) =>
       [
         '  <url>',
@@ -67,6 +68,27 @@ export const Route = createFileRoute('/sitemap.xml')({
           changeFrequency: path === '/blog' ? 'daily' : 'weekly',
           priority: path === '' ? 1 : 0.8,
         }));
+
+        entries.push(
+          ...['/about', '/contact'].map(
+            (path): Entry => ({
+              path,
+              lastModified: '2026-11-13',
+              changeFrequency: 'monthly',
+              priority: 0.6,
+              languages: ['en'],
+            })
+          ),
+          ...GUIDE_SLUGS.map(
+            (slug): Entry => ({
+              path: `/guides/${slug}`,
+              lastModified: getGuide(slug, 'en')!.updatedAt,
+              changeFrequency: 'monthly',
+              priority: 0.7,
+              languages: getGuideLocales(slug),
+            })
+          )
+        );
 
         // Only published project articles belong in the sitemap. The bundled
         // ShipAny tutorial posts are demo content and carry noindex.

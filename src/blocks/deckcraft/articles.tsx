@@ -6,7 +6,12 @@ import { Link } from '@/core/i18n/navigation';
 import { m } from '@/paraglide/messages.js';
 import { getLocale } from '@/paraglide/runtime.js';
 import { GuideFigure, guideMdxComponents } from '@/components/guide-content';
-import { getGuide, getGuideContent, getGuides } from '@/content/guides';
+import {
+  getGuide,
+  getGuideContent,
+  getGuides,
+  PRACTICAL_GUIDE_SLUGS,
+} from '@/content/guides';
 
 import { DeckcraftFooter, DeckcraftHeader } from './chrome';
 
@@ -76,6 +81,28 @@ export function GuidesIndex() {
       </main>
       <DeckcraftFooter />
     </div>
+  );
+}
+
+export function PracticalGuides() {
+  if (getLocale() !== 'en') return null;
+  const guides = getGuides('en').filter((guide) =>
+    PRACTICAL_GUIDE_SLUGS.some((slug) => slug === guide.slug)
+  );
+  return (
+    <section className="dc-container dc-article-related dc-practical-guides">
+      <h2>{m['dc.site.practical']()}</h2>
+      <p className="dc-lead">{m['dc.site.practical_body']()}</p>
+      <div>
+        {guides.map((guide) => (
+          <Link key={guide.slug} href={`/guides/${guide.slug}`}>
+            <span>{guide.category}</span>
+            <strong>{guide.title}</strong>
+            <ArrowRight size={18} />
+          </Link>
+        ))}
+      </div>
+    </section>
   );
 }
 

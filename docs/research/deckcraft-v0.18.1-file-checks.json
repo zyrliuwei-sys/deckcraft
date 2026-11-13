@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-13",
+  "version": "deckcraft-cli 0.18.1",
+  "platform": "macOS arm64",
+  "scope": "Bundled sample, CLI only; no external PowerPoint visual or playback verification",
+  "before": {
+    "slide_xml": 8,
+    "masters": 1,
+    "layouts": 11,
+    "timing_blocks": 2,
+    "font_parts": 0,
+    "embedded_font_records": 0,
+    "slides_with_transition_records": 8
+  },
+  "after": {
+    "slide_xml": 8,
+    "masters": 1,
+    "layouts": 11,
+    "timing_blocks": 2,
+    "font_parts": 0,
+    "embedded_font_records": 0,
+    "slides_with_transition_records": 8
+  },
+  "slide_fields_equal": {
+    "title": true,
+    "layout": true,
+    "notes": true,
+    "shapes": true,
+    "transition": true,
+    "animations": true,
+    "hidden": true
+  },
+  "transition_sequence": [
+    "fade",
+    "push",
+    "wipe",
+    "morph",
+    "fade",
+    "cover",
+    "split",
+    "fade"
+  ],
+  "animation_counts": [0, 1, 0, 4, 0, 0, 0, 0],
+  "render_equal": true,
+  "missing_font_render_equal": false,
+  "pdf_bytes": 1046369,
+  "pdf_signature": "%PDF-1.7",
+  "pdf_page_count": 8,
+  "pdf_first_page_title_extractable": true,
+  "pdf_tagged": false,
+  "cli_asset": "deckcraft-cli-0.18.1-macos-universal.zip",
+  "cli_archive_sha256": "10992f73c88a4c0361dd0fec3a4d7490731ffb3ea9658ee2274b396e3341af00",
+  "missing_font_fixture": "All XML typeface=\"Inter\" attributes replaced with typeface=\"DeckCraftMissingFontQA20261113\" in a copy of sample.pptx; no text or geometry changed.",
+  "missing_font_visual_observation": "Title narrower. Original subtitle line 1 ends with \"to\"; missing-font line 1 ends with \"and\". Exact fallback family not verified."
+}

@@ -51,10 +51,15 @@ type LoaderData = { meta: PageMeta; slug: string; locale: string };
 // explicit route file (e.g. privacy-policy.tsx) so static segments
 // always outrank dynamic ones — add a new page by creating the MDX
 // content plus a thin route file using this factory.
-export function staticPageRouteOptions(slug: string) {
+export function staticPageRouteOptions(
+  slug: string,
+  options: { englishOnly?: boolean } = {}
+) {
+  const pageLocales = options.englishOnly ? (['en'] as const) : locales;
   return {
     loader: (): LoaderData => {
       const locale = getLocale();
+      if (options.englishOnly && locale !== 'en') throw notFound();
       const key = pageKey(slug, locale);
       if (!key) throw notFound();
       return { meta: metas[key], slug, locale };
@@ -72,7 +77,7 @@ export function staticPageRouteOptions(slug: string) {
         ],
         links: [
           { rel: 'canonical', href: canonical },
-          ...locales.map((loc) => ({
+          ...pageLocales.map((loc) => ({
             rel: 'alternate',
             hrefLang: loc,
             href: localizeUrl(`${deckcraftLinks.site}/${slug}`, { locale: loc })
